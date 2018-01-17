@@ -22,7 +22,7 @@ public class HomeController {
 
     @GetMapping("/subtract/{num1}/from/{num2}")
     @ResponseBody
-    public int substraction(@PathVariable int num1, @PathVariable int num2){
+    public int subtraction(@PathVariable int num1, @PathVariable int num2){
         return num2 - num1;
     }
 
