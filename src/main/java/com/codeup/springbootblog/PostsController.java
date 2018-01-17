@@ -1,14 +1,33 @@
 package com.codeup.springbootblog;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
+@Controller
 public class PostsController {
 
-    @GetMapping("/divide/{num1}/by/{num2}")
+    @GetMapping("/posts")
     @ResponseBody
-    public int division(@PathVariable int num1, @PathVariable int num2){
-        return num1 / num2;
+    public String posts() {
+        return "post index page";
+    }
+
+
+    @GetMapping("/posts/{id}")
+    @ResponseBody
+    public String individualPost(@PathVariable String id) {
+        return "view an individual post";
+    }
+
+    @GetMapping("/posts/create")
+    @ResponseBody
+    public String createPost() {
+        return "view the form for creating a form";
+    }
+
+    @PostMapping("/posts/create")
+    @ResponseBody
+    public String create() {
+        return "create a new post";
     }
 }
