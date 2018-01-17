@@ -30,4 +30,6 @@ public class PostsController {
     public String create() {
         return "create a new post";
     }
+
+
 }
