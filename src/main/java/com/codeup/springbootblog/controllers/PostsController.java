@@ -1,6 +1,7 @@
-package com.codeup.springbootblog;
+package com.codeup.springbootblog.controllers;
 
 import com.codeup.springbootblog.models.Post;
+import com.codeup.springbootblog.services.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,13 +12,15 @@ import java.util.List;
 @Controller
 public class PostsController {
 
+    private PostService service;
+
+    public PostsController(PostService service) {
+        this.service = service;
+    }
+
     @RequestMapping("/posts")
     public String allThePosts(Model viewModel) {
-        // Inside the method that shows all the posts, create a new array list and add two post objects to it,
-        // then pass that list to the view.
-        List<Post> posts = new ArrayList<>();
-        posts.add(new Post("my first post", "xxxxxxxxxxxyyyyyyyyyyyyy11111111111"));
-        posts.add(new Post("my second post", "xxxxxxxxxxxyyyyyyyyyyyyy222222222222222"));
+        List<Post> posts = service.findAll();
         viewModel.addAttribute("posts", posts);
         return "/posts/index";
     }
@@ -27,8 +30,7 @@ public class PostsController {
 
     @RequestMapping("/posts/{id}")
     public String showIndividualPost(@PathVariable int id, Model viewModel) {
-        // Inside the method that shows an individual post, create a new post object and pass it to the view.
-        Post post = new Post("my first post", "xxxxxxxxxxxyyyyyyyyyyyyy11111111111");
+        Post post =  service.findOne(id);
         viewModel.addAttribute("post", post);
         return "/posts/show";
     }

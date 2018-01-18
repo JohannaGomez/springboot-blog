@@ -1,29 +1,29 @@
 package com.codeup.springbootblog.models;
 
-public class Post {
+public class Ad {
     private long id;
     private String title;
-    private String body;
+    private String description;
 
-    public Post(String title, String body) {
+    public Ad(String title, String description) {
         this.title = title;
-        this.body = body;
+        this.description = description;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getBody() {
-        return body;
-    }
-
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public long getId() {
