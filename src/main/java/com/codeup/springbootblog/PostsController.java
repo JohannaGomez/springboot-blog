@@ -1,13 +1,11 @@
 package com.codeup.springbootblog;
 
+import com.codeup.springbootblog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static com.sun.tools.doclets.formats.html.markup.HtmlStyle.title;
 
 @Controller
 public class PostsController {
