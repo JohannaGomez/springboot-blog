@@ -8,8 +8,15 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <h1>Index for my posts:
+            <h1>Showing all the posts:
                 <!--<span th:text="${num1}"></span>!!-->
+                <div th:each="post : ${posts}">
+                    <h1>
+                        <span th:text="${post.title}"></span>
+                    </h1>
+                    <p th:text="${post.body}"></p>
+                </div>
+
             </h1>
         </div>
     </div>
