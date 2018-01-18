@@ -20,8 +20,6 @@ public class PostsController {
 
     @RequestMapping("/posts")
     public String allThePosts(Model viewModel) {
-        // Inside the method that shows all the posts, create a new array list and add two post objects to it,
-        // then pass that list to the view.
         List<Post> posts = service.findAll();
         viewModel.addAttribute("posts", posts);
         return "/posts/index";
@@ -32,8 +30,7 @@ public class PostsController {
 
     @RequestMapping("/posts/{id}")
     public String showIndividualPost(@PathVariable int id, Model viewModel) {
-        // Inside the method that shows an individual post, create a new post object and pass it to the view.
-        Post post = new Post("my first post", "xxxxxxxxxxxyyyyyyyyyyyyy11111111111");
+        Post post =  service.findOne(id);
         viewModel.addAttribute("post", post);
         return "/posts/show";
     }

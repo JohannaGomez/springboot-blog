@@ -1,4 +1,4 @@
-package com.codeup.springbootblog.services;
+package com.codeup.springbootblog.models;
 
 public class Ad {
     private long id;

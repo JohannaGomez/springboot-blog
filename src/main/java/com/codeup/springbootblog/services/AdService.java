@@ -1,5 +1,6 @@
 package com.codeup.springbootblog.services;
 
+import com.codeup.springbootblog.models.Ad;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
