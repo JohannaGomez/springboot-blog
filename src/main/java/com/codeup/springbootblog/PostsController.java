@@ -3,20 +3,29 @@ package com.codeup.springbootblog;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class PostsController {
 
     @RequestMapping("/posts")
-    @ResponseBody
-    public String index() {
-        return "post index page";
+    public String allThePost() {
+        // Inside the method that shows all the posts, create a new array list and add two post objects to it,
+        // then pass that list to the view.
+        ArrayList<String> posts = new ArrayList<>();
+        posts.add("post1");
+        posts.add("post2");
+
+        return "/posts/index";
     }
 
 
     @RequestMapping("/posts/{id}")
-    @ResponseBody
-    public String individualPost(@PathVariable String id) {
-        return "view an individual post" + id;
+    public String showIndividualPost(@PathVariable String id) {
+        // Inside the method that shows an individual post, create a new post object and pass it to the view.
+        Post post = new Post();
+        return "/posts/show";
     }
 
     @RequestMapping("/posts/create")
