@@ -3,10 +3,12 @@
 <head th:replace="fragments/head :: header('Rolling the dice')"></head>
 
 <body>
+    <nav th:replace="fragments/navbar :: navbar-partial"></nav>
+
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1>rolling the dice
+                <h1>Rolling the dice:
                     <span th:text="${num1}"></span>!!
                 </h1>
             </div>
@@ -22,23 +24,32 @@
                     <li><a href="/roll-dice/6">6</a></li>
                 </ul>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div th:if="${num1 != null}">
+                    <h3>The number you guessed:
+                        <span th:text="${num1}"></span>
+                    </h3>
+                    <h3>Random number was:
+                        <span th:text="${random}"></span>
+                    </h3>
 
+                    <!--<h1>hello,-->
+                    <!--<span th:text="${name}"></span>!!-->
+                    <!--<span th:if="!${name}">World</span>!!-->
+                    <!--</h1>-->
+
+                    <h1 th:if="${winner}">You guessed!</h1>
+                    <h1 th:if="!${winner}">You didn't guessed the random number</h1>
+                </div>
+            </div>
         </div>
 
     </div>
 
 
-    <!--<div th:if="${guess != null}">-->
-        <!--Guess:-->
-        <!--<p th:text="${guess}"></p>-->
-        <!--Rnd:-->
-        <!--<p th:text="${rnd}"></p>-->
-
-        <!--<h1 th:if="${win}">You Won!</h1>-->
-        <!--<h1 th:if="${!win}">You Lost!</h1>-->
-    <!--</div>-->
-
-    <footer th:replace="fragments/footer :: my-partial2"></footer>
+    <footer th:replace="fragments/footer :: footer-partial"></footer>
 
 </body>
 </html>
