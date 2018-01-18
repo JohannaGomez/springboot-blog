@@ -34,14 +34,8 @@
                     <h3>Random number was:
                         <span th:text="${random}"></span>
                     </h3>
-
-                    <!--<h1>hello,-->
-                    <!--<span th:text="${name}"></span>!!-->
-                    <!--<span th:if="!${name}">World</span>!!-->
-                    <!--</h1>-->
-
                     <h1 th:if="${winner}">You guessed!</h1>
-                    <h1 th:if="!${winner}">You didn't guessed the random number</h1>
+                    <h1 th:if="!${winner}">You didn't guess the random number</h1>
                 </div>
             </div>
         </div>
