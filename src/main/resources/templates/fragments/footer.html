@@ -6,6 +6,8 @@
 <!-- Defines the fragment -->
     <footer th:fragment="footer-partial" id="asd" class="my-footer">
         <h5 style="text-align: center">Johanna Paola Gomez Perez -  Codeup 2018</h5>
+        <!-- Using #dates : utility methods for java.util.Date objects: -->
+        <span style="text-align: center" class="text-muted">Johanna Paola Gomez Perez -  Blog 2018 &copy; <span th:text="${#dates.year(#dates.createNow())}"></span></span>
     </footer>
 
 </body>
