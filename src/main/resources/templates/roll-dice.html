@@ -1,18 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>roll-dice</title>
-    <link rel="stylesheet" href="/static/style.css" />
-</head>
-<body>
-<h1>rolling the dice
-    <span th:text="${num1}"></span>!!
-</h1>
-<input type="text" />
-<button></button>
+<head th:replace="fragments/head :: header('Rolling the dice')"></head>
 
-<footer th:replace="fragments/footer :: my-partial2"></footer>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>rolling the dice
+                    <span th:text="${num1}"></span>!!
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <ul>
+                    <li><a href="/roll-dice/1">1</a></li>
+                    <li><a href="/roll-dice/2">2</a></li>
+                    <li><a href="/roll-dice/3">3</a></li>
+                    <li><a href="/roll-dice/4">4</a></li>
+                    <li><a href="/roll-dice/5">5</a></li>
+                    <li><a href="/roll-dice/6">6</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--<div th:if="${guess != null}">-->
+        <!--Guess:-->
+        <!--<p th:text="${guess}"></p>-->
+        <!--Rnd:-->
+        <!--<p th:text="${rnd}"></p>-->
+
+        <!--<h1 th:if="${win}">You Won!</h1>-->
+        <!--<h1 th:if="${!win}">You Lost!</h1>-->
+    <!--</div>-->
+
+    <footer th:replace="fragments/footer :: my-partial2"></footer>
 
 </body>
 </html>
+
+
+
+
