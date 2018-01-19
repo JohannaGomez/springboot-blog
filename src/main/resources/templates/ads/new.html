@@ -9,12 +9,15 @@
         <div class="col-lg-12">
 
             <h1>new ad</h1>
-            <form action="/ads/create" method="post">
+            <form action="/ads/create" method="post" th:object="${ad}">
                 Title:
-                <input name="title" />
+                <input th:field="*{title}" />
                 <br />
                 Description:
-                <input name="description" />
+                <input th:field="*{description}" />
+
+                <input type="hidden" name="issunny" value="false" />
+
                 <br />
                 <input type="submit" />
             </form>

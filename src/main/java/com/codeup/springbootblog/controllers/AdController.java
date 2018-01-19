@@ -50,7 +50,10 @@ public class AdController {
 
     @GetMapping("ads/new")
     // to catch the form
-    public String showCreateAdForm(){
+    public String showCreateAdForm(Model viewModel){
+        //using the empty constructor I just created in the Ad class
+        Ad ad = new Ad();
+        viewModel.addAttribute("ad", ad);
         return "ads/new";
     }
 
