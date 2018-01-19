@@ -43,22 +43,23 @@ public class PostsController {
     public String showIndividualPost(@PathVariable int id, Model viewModel) {
         Post post =  postService.findOne(id);
         viewModel.addAttribute("post", post);
-        return "/posts/show";
-//        return "/blog_template/show";
+//        return "/posts/show";
+        return "/blog_template/show";
     }
 
 
     @GetMapping("posts/new")
     // to catch the form
-    public String showCreatePostForm(){
-        return "posts/new";
+    public String showCreatePostForm(Model viewModel){
+        Post post = new Post();
+        viewModel.addAttribute("post", post);
+        return "blog_template/new";
     }
 
     @PostMapping("posts/create")
     @ResponseBody
     // we are not using pathvariable here because is comming from a form
-    public String savePost(@RequestParam("title") String title, @RequestParam("body") String body){
-        Post post = new Post(title, body);
+    public String savePost(@ModelAttribute Post post){
         postService.save(post);
         return post.getTitle() + " " + post.getBody();
     }
