@@ -5,8 +5,7 @@ import com.codeup.springbootblog.models.Post;
 import com.codeup.springbootblog.services.AdService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,9 +43,28 @@ public class AdController {
     }
 
     @GetMapping("/ads/{id}")
-    public String showIndividualAd(@PathVariable long id) {
-        return "";
+    public String showIndividualAd(@PathVariable int id, Model viewModel) {
+        Ad ad = service.findOne(id);
+        viewModel.addAttribute("ad", ad);
+        return "ads/show";
     }
+
+    @GetMapping("ads/new")
+    public String showCreateAdForm(){
+        return "ads/new";
+    }
+
+    @PostMapping("ads/create")
+    @ResponseBody
+    // we are not using pathvariable here because is comming from a form
+    public String saveAd(@RequestParam("title") String title, @RequestParam("description") String description){
+        Ad ad = new Ad(title, description);
+        return ad.getTitle() + " " + ad.getDescription();
+    }
+
+
+
+
 
 
 }

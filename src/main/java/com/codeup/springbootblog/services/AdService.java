@@ -2,6 +2,7 @@ package com.codeup.springbootblog.services;
 
 import com.codeup.springbootblog.models.Ad;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,5 +37,11 @@ public class AdService {
         save(new Ad("ad a", "description a"));
         save(new Ad("ad B", "description b"));
         save(new Ad("ad C", "description c"));
+    }
+
+    @GetMapping("ads/new")
+    public String showCreateAdForm(){
+        return "ads/new";
+
     }
 }
