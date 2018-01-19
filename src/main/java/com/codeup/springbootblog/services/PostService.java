@@ -32,7 +32,7 @@ public class PostService {
     }
 
     private void createPosts() {
-        // create some ad objects and add them to the ads list
+        // create some post objects and add them to the posts list
         // with the save method
         save(new Post("How To Write A Blog Post: Your 5-Point Checklist To Rock A Perfect Post", "Creating the perfect blog post sounds like a tall order, and maybe laying claim to it sounds a bit pretentious.\n" +
                 "\n" +
