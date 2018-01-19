@@ -18,17 +18,18 @@ public class PostsController {
         this.service = service;
     }
 
-    @RequestMapping("/posts")
+    @GetMapping("/posts")
     public String allThePosts(Model viewModel) {
         List<Post> posts = service.findAll();
         viewModel.addAttribute("posts", posts);
-        return "/posts/index";
+//        return "/posts/index";
+        return "/blog_template/index";
     }
 
 
 
 
-    @RequestMapping("/posts/{id}")
+    @GetMapping("/posts/{id}")
     public String showIndividualPost(@PathVariable int id, Model viewModel) {
         Post post =  service.findOne(id);
         viewModel.addAttribute("post", post);
@@ -36,7 +37,7 @@ public class PostsController {
     }
 
 
-    @RequestMapping("/posts/create")
+    @GetMapping("/posts/create")
     @ResponseBody
     public String createPost() {
         return "view the form for creating a form";
