@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//Page to search posts
-//create a form in the navigation bar
-//find the fragment and add a new one for the search form
 
 // Dependency injection
 // 1.- Constructor injection (preferred) --> required dependencies
