@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/blog_template_head :: header('Blog posts index')"></head>
 <body>
-  <nav th:include="fragments/blog_template_navbar :: navbar-partial"></nav>
+  <nav th:replace="fragments/blog_template_navbar :: navbar-partial"></nav>
 
     <!-- Page Header -->
     <header class="masthead" style="background-image: url('../../static/img/home-bg.jpg')">
