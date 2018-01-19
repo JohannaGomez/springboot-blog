@@ -1,7 +1,6 @@
 package com.codeup.springbootblog.controllers;
 
 import com.codeup.springbootblog.models.Ad;
-import com.codeup.springbootblog.models.Post;
 import com.codeup.springbootblog.services.AdService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,28 +27,29 @@ import java.util.List;
 public class AdController {
 
     // Auto-wiring
-    private AdService service;
+    private AdService adService;
 
     // Dependency injection makes explicit.  Constructor and setter injection.
     public AdController(AdService service) {
-        this.service = service;
+        this.adService = service;
     }
 
     @GetMapping("/ads")
     public String allTheAds(Model viewModel) {
-        List<Ad> ads = service.findAll();
+        List<Ad> ads = adService.findAll();
         viewModel.addAttribute("ads", ads);
         return "/ads/index";
     }
 
     @GetMapping("/ads/{id}")
     public String showIndividualAd(@PathVariable int id, Model viewModel) {
-        Ad ad = service.findOne(id);
+        Ad ad = adService.findOne(id);
         viewModel.addAttribute("ad", ad);
         return "ads/show";
     }
 
     @GetMapping("ads/new")
+    // to catch the form
     public String showCreateAdForm(){
         return "ads/new";
     }
@@ -59,6 +59,7 @@ public class AdController {
     // we are not using pathvariable here because is comming from a form
     public String saveAd(@RequestParam("title") String title, @RequestParam("description") String description){
         Ad ad = new Ad(title, description);
+        adService.save(ad);
         return ad.getTitle() + " " + ad.getDescription();
     }
 
