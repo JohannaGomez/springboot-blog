@@ -27,23 +27,23 @@ import java.util.List;
 public class AdController {
 
     // Auto-wiring
-    private AdService adService;
+    private AdService adsService;
 
     // Dependency injection makes explicit.  Constructor and setter injection.
     public AdController(AdService service) {
-        this.adService = service;
+        this.adsService = service;
     }
 
     @GetMapping("/ads")
     public String allTheAds(Model viewModel) {
-        List<Ad> ads = adService.findAll();
+        List<Ad> ads = adsService.findAll();
         viewModel.addAttribute("ads", ads);
         return "/ads/index";
     }
 
     @GetMapping("/ads/{id}")
     public String showIndividualAd(@PathVariable int id, Model viewModel) {
-        Ad ad = adService.findOne(id);
+        Ad ad = adsService.findOne(id);
         viewModel.addAttribute("ad", ad);
         return "ads/show";
     }
@@ -60,9 +60,8 @@ public class AdController {
     @PostMapping("ads/create")
     @ResponseBody
     // we are not using pathvariable here because is comming from a form
-    public String saveAd(@RequestParam("title") String title, @RequestParam("description") String description){
-        Ad ad = new Ad(title, description);
-        adService.save(ad);
+    public String saveAd(@ModelAttribute Ad ad){
+        adsService.save(ad);
         return ad.getTitle() + " " + ad.getDescription();
     }
 
