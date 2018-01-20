@@ -2,69 +2,72 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head></head>
 <body>
-    <!-- Navigation -->
-    <!--<nav th:fragment="navbar-partial" class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">-->
-        <!--<div class="container">-->
-            <!--<a class="navbar-brand" href="index.html">My village</a>-->
+<!--Navbar from index and post are the same-->
 
-            <!--&lt;!&ndash;<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">&ndash;&gt;-->
-                <!--&lt;!&ndash;Menu&ndash;&gt;-->
-                <!--&lt;!&ndash;<i class="fa fa-bars"></i>&ndash;&gt;-->
-            <!--&lt;!&ndash;</button>&ndash;&gt;-->
+<!-- Navigation -->
+    <nav th:fragment="navbar-partial" class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="/posts">My village</a>
 
-            <!--<div class="collapse navbar-collapse" id="navbarResponsive">-->
-                <!--<ul class="navbar-nav ml-auto">-->
-                    <!--<li class="nav-item">-->
-                        <!--&lt;!&ndash;<a class="nav-link" href="index.html">Home</a>&ndash;&gt;-->
-                        <!--<a class="nav-link" href="/ads/create"><span class="glyphicon glyphicon-tag"></span> Create A New Post</a>-->
-                    <!--</li>-->
-                    <!--<li class="nav-item">-->
-                        <!--&lt;!&ndash;<a class="nav-link" href="about.html">About</a>&ndash;&gt;-->
-                        <!--<a class="nav-link" href="/profile"><span class="glyphicon glyphicon-user"></span> View Profile</a>-->
-                    <!--</li>-->
-                    <!--<li class="nav-item">-->
-                        <!--&lt;!&ndash;<a class="nav-link" href="post.html">Sample Post</a>&ndash;&gt;-->
-                        <!--<a class="nav-link" href="/register">Register <span class="glyphicon glyphicon-list-alt"-->
-                                                           <!--aria-hidden="true"></span></a>-->
-                    <!--</li>-->
-                    <!--<li class="nav-item">-->
-                        <!--&lt;!&ndash;<a class="nav-link" href="contact.html">Contact</a>&ndash;&gt;-->
-                        <!--<a class="nav-link" href="/login">Login <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a>-->
-                    <!--</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</nav>-->
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fa fa-bars"></i>
+            </button>
 
-
-    <nav th:fragment="navbar-partial" id="navbar-partial" class="navbar navbar-default navbar-partial">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/ads">Mama's boy!</a>
-                <form class="navbar-form navbar-left" action="/search?searchTerm=searchTerm.value" method="GET">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="searchTerm" placeholder="Search" />
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <!--<a class="nav-link" href="index.html">Home</a>-->
+                        <a class="nav-link" href="/posts/new"><span class="glyphicon glyphicon-tag"></span> Create A New Post</a>
+                    </li>
+                    <li class="nav-item">
+                        <!--<a class="nav-link" href="about.html">About</a>-->
+                        <a class="nav-link" href="/profile"><span class="glyphicon glyphicon-user"></span> View Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <!--<a class="nav-link" href="post.html">Sample Post</a>-->
+                        <a class="nav-link" href="/register">Register <span class="glyphicon glyphicon-list-alt"
+                                                           aria-hidden="true"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <!--<a class="nav-link" href="contact.html">Contact</a>-->
+                        <a class="nav-link" href="/login">Login <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a>
+                    </li>
+                </ul>
             </div>
-            <ul class="nav navbar-nav navbar-right">
-                <!--<c:if test="${ sessionScope.user != null}">-->
-                <li><a href="/ads/create"><span class="glyphicon glyphicon-tag"></span> Create A New Post</a></li>
-                <li><a href="/profile"><span class="glyphicon glyphicon-user"></span> View Profile</a></li>
-                <li><a href="/logout">Logout <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a>
-                </li>
-                <!--</c:if>-->
-                <!--<c:if test="${sessionScope.user == null}">-->
-                <li><a href="/register">Register <span class="glyphicon glyphicon-list-alt"
-                                                       aria-hidden="true"></span></a>
-                </li>
-                <li><a href="/login">Login <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a></li>
-                <!--</c:if>-->
-            </ul>
         </div>
     </nav>
 </body>
 </html>
+
+<!--Adlister navbar:-->
+    <!--<nav th:fragment="navbar-partial" id="navbar-partial" class="navbar navbar-default navbar-partial">-->
+        <!--<div class="container-fluid">-->
+            <!--<div class="navbar-header">-->
+                <!--<a class="navbar-brand" href="/ads">Mama's boy!</a>-->
+                <!--<form class="navbar-form navbar-left" action="/search?searchTerm=searchTerm.value" method="GET">-->
+                    <!--<div class="form-group">-->
+                        <!--<input type="text" class="form-control" name="searchTerm" placeholder="Search" />-->
+                    <!--</div>-->
+                    <!--<button type="submit" class="btn btn-default">Submit</button>-->
+                <!--</form>-->
+            <!--</div>-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!--&lt;!&ndash;<c:if test="${ sessionScope.user != null}">&ndash;&gt;-->
+                <!--<li><a href="/ads/create"><span class="glyphicon glyphicon-tag"></span> Create A New Post</a></li>-->
+                <!--<li><a href="/profile"><span class="glyphicon glyphicon-user"></span> View Profile</a></li>-->
+                <!--<li><a href="/logout">Logout <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a>-->
+                <!--</li>-->
+                <!--&lt;!&ndash;</c:if>&ndash;&gt;-->
+                <!--&lt;!&ndash;<c:if test="${sessionScope.user == null}">&ndash;&gt;-->
+                <!--<li><a href="/register">Register <span class="glyphicon glyphicon-list-alt"-->
+                                                       <!--aria-hidden="true"></span></a>-->
+                <!--</li>-->
+                <!--<li><a href="/login">Login <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a></li>-->
+                <!--&lt;!&ndash;</c:if>&ndash;&gt;-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</nav>-->
+
 
 
