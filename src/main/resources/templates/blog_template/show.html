@@ -1,48 +1,80 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!--<head th:replace="fragments/head :: header(${post.title})"></head>-->
 <head th:replace="fragments/blog_template_head :: header(${post.title})"></head>
 
+<!--<head th:fragment="header(title)">-->
+
+    <!--<meta charset="utf-8"/>-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>-->
+    <!--<meta name="description" content=""/>-->
+    <!--<meta name="author" content=""/>-->
+
+    <!--<title th:text="${post.title}"></title>-->
+
+    <!--&lt;!&ndash; Bootstrap core CSS &ndash;&gt;-->
+    <!--<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>-->
+
+    <!--&lt;!&ndash; Custom fonts for this template &ndash;&gt;-->
+    <!--<link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>-->
+    <!--<link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'/>-->
+    <!--<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'/>-->
+
+    <!--&lt;!&ndash; Custom styles for this template &ndash;&gt;-->
+    <!--<link href="css/clean-blog.min.css" rel="stylesheet"/>-->
+
+<!--</head>-->
+
 <body>
-<nav th:replace="fragments/blog_template_navbar :: navbar-partial"></nav>
-<!-- Page Header -->
-<header class="masthead" style="background-image: url('/img/home-bg.jpg')">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="site-heading">
-                    <h1>My village</h1>
-                    <span class="subheading">A Blog by Moms </span>
+    <nav th:replace="fragments/blog_template_navbar :: navbar-partial"></nav>
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('/img/oils.jpg')">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="post-heading">
+                        <h1 th:text="${post.title}"></h1>
+                        <h2 class="subheading">Problems look mighty small from 150 miles up</h2>
+                        <span class="meta">Posted by
+                <a href="#">Start Bootstrap</a>
+                on August 24, 2017</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</header>
+    </header>
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="post-preview">
-                <h3 class="post-title" th:text="${post.title}"></h3>
-                <p class="post-subtitle" th:text="${post.body}"></p>
-                <p><a href="#">Lemon and Lavender Lounge ~ January Essential Oils Basic Course</a>
-                    on September 24, 2017</p>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <!--<div class="post-preview">-->
+                        <!--<h3 class="post-title" th:text="${post.title}"></h3>-->
+                        <p class="post-subtitle" th:text="${post.body}"></p>
+                        <p><a href="#">Lemon and Lavender Lounge ~ January Essential Oils Basic Course</a>
+                            on September 24, 2017</p>
+                    <!--</div>-->
+
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </article>
+    <hr />
 
 
-<!--<footer th:replace="fragments/footer :: footer-partial"></footer>-->
-<footer th:replace="fragments/blog_template_footer :: footer-partial"></footer>
 
-<!-- Bootstrap core JavaScript -->
-<script src="../../static/vendor/jquery/jquery.min.js"></script>
-<script src="../../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <footer th:replace="fragments/blog_template_footer :: footer-partial"></footer>
 
-<!-- Custom scripts for this template -->
-<script src="../../static/js/clean-blog.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="/js/clean-blog.min.js"></script>
+
 
 
 </body>
