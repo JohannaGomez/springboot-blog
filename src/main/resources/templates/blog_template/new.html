@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/blog_template_head :: header('Blog Form')"></head>
+<style>
+    .invisible {
+        display: none;
+    }
+</style>
 <body>
 <nav th:replace="fragments/blog_template_navbar :: navbar-partial"></nav>
 
@@ -11,32 +16,27 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h1>Creaating a new Post</h1>
+                    <h1>Creating a new Post</h1>
                     <span class="subheading">A Blog by Moms </span>
                 </div>
             </div>
         </div>
+
+        <div id="create_post" class="invisible">
+            <form action="/posts/create" method="post" th:object="${post}">
+                New post title:
+                <input class="post-title" th:field="*{title}" />
+                <br />
+                Description:
+                <input class="post-subtitle" th:field="*{body}" />
+                <br />
+                <input type="submit" />
+            </form>
+        </div>
+
+
     </div>
 </header>
-
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="post-preview">
-                <form action="/posts/create" method="post" th:object="${post}">
-                    Title:
-                    <input class="post-title" th:field="*{title}" />
-                    <br />
-                    Description:
-                    <input class="post-subtitle" th:field="*{body}" />
-
-                    <br />
-                    <input type="submit" />
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 <footer th:replace="fragments/blog_template_footer :: footer-partial"></footer>
 
