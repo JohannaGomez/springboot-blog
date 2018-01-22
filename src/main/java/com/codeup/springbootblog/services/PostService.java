@@ -24,7 +24,7 @@ public class PostService {
     public Post save(Post post) {
         // Generates a consecutive number
         post.setId(posts.size() + 1);
-        posts.add(post);
+        this.posts.add(post);
         return post;
     }
 
