@@ -1,5 +1,7 @@
 package com.codeup.springbootblog;
 
+import com.codeup.springbootblog.daos.PostRepository;
+import com.codeup.springbootblog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,6 +39,26 @@ public class HomeController {
     public int division(@PathVariable int num1, @PathVariable int num2) {
         return num1 / num2;
     }
+
+
+
+//    private PostRepository postDao;
+//
+//    public HomeController(PostRepository postDao) {
+//        this.postDao = postDao;
+//    }
+//
+//    @GetMapping("/dao-test")
+//    @ResponseBody
+//    public String daoTest() {
+//        Iterable<Post> posts = postDao.findAll();
+//        for (Post post: posts){
+//            System.out.println("-------");
+//            System.out.println("#" + post.getId());
+//            System.out.println("description: " + post.getBody());
+//        }
+//        return "check your console";
+//    }
 
 
 }

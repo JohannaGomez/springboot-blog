@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/blog_template_head :: header('Blog posts index')"></head>
+<style>
+  .edit_delete_row{
+    margin-bottom: 20px;
+  }
+
+  .edit_btn, .delete_btn {
+    height: 45px;
+  }
+</style>
 <body>
   <nav th:replace="fragments/blog_template_navbar :: navbar-partial"></nav>
 
@@ -25,14 +34,24 @@
         <div class="col-lg-8 col-md-10 mx-auto">
             <div class="post-preview" th:each="post : ${posts}">
               <h3 class="post-title">
-                <a href="#"><span th:text="${post.title}"></span></a>
+                <a th:href="${'/posts/'+post.id}"><span th:text="${post.title}"></span></a>
               </h3>
               <p class="post-subtitle" th:text="${post.body}"></p>
 
               <p class="post-meta">Posted by:
                 <a href="#">Lemon and Lavender Lounge ~ January Essential Oils Basic Course</a>
                 on September 24, 2017</p>
-              <a th:href="${'/posts/'+post.id+'/edit'}"><span class="glyphicon glyphicon-tag"></span>Edit</a>
+              <div class="row edit_delete_row">
+                <div class="col-lg-4">
+                  <a class="btn btn-warning btn-block edit_btn" th:href="${'/posts/'+post.id+'/edit'}">Edit</a>
+                </div>
+                <div class="col-lg-4">
+                </div>
+                <div class="col-lg-4">
+                  <a class="btn btn-danger btn-block delete_btn" th:href="${'/posts/'+post.id+'/delete'}">Delete</a>
+                </div>
+              </div>
+              <br/>
 
             </div>
           <hr/>

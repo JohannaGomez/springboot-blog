@@ -1,5 +1,6 @@
 package com.codeup.springbootblog.controllers;
 
+import com.codeup.springbootblog.daos.PostRepository;
 import com.codeup.springbootblog.models.Ad;
 import com.codeup.springbootblog.models.Post;
 import com.codeup.springbootblog.services.PostService;
@@ -22,21 +23,21 @@ public class PostsController {
 
     private final PostService postService;
 
-    //    2.- Inject the dependency through the constructor and assign it to your instance variable
+    private PostRepository postDao;
 
-    public PostsController(PostService service) {
-        this.postService = service;  // This is the 1st time we assign something to postService.  When using final, we can not
+    // 2.- Inject the dependency through the constructor and assign it to your instance variable
+
+    public PostsController(PostService postService, PostRepository postDao) {
+        this.postService = postService; // This is the 1st time we assign something to postService.  When using final, we can not
         // assign it anything else.
+        this.postDao = postDao;
     }
+
 
     @GetMapping("/posts")
     public String allThePosts(Model viewModel) {
-        Post post = new Post();
-        List<Post> posts = postService.findAll();
-        viewModel.addAttribute("posts", posts);
-        viewModel.addAttribute("post", post);
-//        return "/posts/index";      -- This is my old index --
-        return "/blog_template/index";    // -- This is the bootstrap template //
+        viewModel.addAttribute("posts", postDao.findAll());
+        return "/blog_template/index";
     }
 
 
@@ -46,7 +47,6 @@ public class PostsController {
     public String showIndividualPost(@PathVariable int id, Model viewModel) {
         Post post =  postService.findOne(id);
         viewModel.addAttribute("post", post);
-//        return "/posts/show";
         return "/blog_template/show";
     }
 
@@ -74,9 +74,21 @@ public class PostsController {
         return "/blog_template/edit";
     }
 
+    @GetMapping("posts/{id}/delete")
+    public String deletePost(@PathVariable long id, Model viewModel){
+        postService.delete(id);
+        return "redirect:/posts";
+    }
+
+
     @PostMapping("posts/edit")
     public String updatePost(@ModelAttribute Post post){
         postService.update(post);
         return "redirect:/posts";
     }
+
+
+
+
+
 }
