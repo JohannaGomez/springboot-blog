@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/blog_template_head :: header('Blog posts index')"></head>
+<style>
+  .edit_delete_row{
+    margin-bottom: 20px;
+  }
+
+  .edit_btn, .delete_btn {
+    height: 45px;
+  }
+</style>
 <body>
   <nav th:replace="fragments/blog_template_navbar :: navbar-partial"></nav>
 
@@ -32,17 +41,17 @@
               <p class="post-meta">Posted by:
                 <a href="#">Lemon and Lavender Lounge ~ January Essential Oils Basic Course</a>
                 on September 24, 2017</p>
-              <div class="row">
+              <div class="row edit_delete_row">
                 <div class="col-lg-4">
-                  <small><a th:href="${'/posts/'+post.id+'/edit'}" style="text-align: center">Edit</a></small>
+                  <a class="btn btn-warning btn-block edit_btn" th:href="${'/posts/'+post.id+'/edit'}">Edit</a>
                 </div>
                 <div class="col-lg-4">
                 </div>
                 <div class="col-lg-4">
-                  <small><a th:href="${'/posts/'+post.id+'/delete'}" style="text-align: center">Delete</a></small>
+                  <a class="btn btn-danger btn-block delete_btn" th:href="${'/posts/'+post.id+'/delete'}">Delete</a>
                 </div>
-                <br/>
               </div>
+              <br/>
 
             </div>
           <hr/>
