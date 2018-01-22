@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/blog_template_head :: header('Blog Form')"></head>
+<style>
+ .modal-dialog {
+     max-width: none !important;
+ }
+
+
+
+
+</style>
 <body>
 <nav th:replace="fragments/blog_template_navbar :: navbar-partial"></nav>
 
@@ -11,32 +20,74 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h1>Creaating a new Post</h1>
+                    <h1 data-toggle="modal" data-target="#myModalHorizontal">New posts!</h1>
                     <span class="subheading">A Blog by Moms </span>
                 </div>
             </div>
         </div>
+
+
+        <!--Modal-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Close</span></button>
+                            <!--<h4 class="modal-title" id="myModalLabel">Please register!!!</h4>-->
+                        </div>
+                        <div class="modal-body">
+                            <form action="/posts/create" method="post" th:object="${post}">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <h6>New post title:</h6>
+                                    </div>
+                                    <div class="col-lg-offset-1 col-lg-8">
+                                        <input class="post-title" th:field="*{title}" />
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <h6>Description:</h6>
+                                    </div>
+                                    <div class="col-lg-offset-1 col-lg-8">
+                                        <input class="post-title" th:field="*{body}" />
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <input type="submit" class="btn btn-primary btn-block" />
+                                    </div>
+                                    <br/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--<div id="create_post" class="invisible">-->
+            <!--<form action="/posts/create" method="post" th:object="${post}">-->
+                <!--New post title:-->
+                <!--<input class="post-title" th:field="*{title}" />-->
+                <!--<br />-->
+                <!--Description:-->
+                <!--<input class="post-subtitle" th:field="*{body}" />-->
+                <!--<br />-->
+                <!--<input type="submit" />-->
+            <!--</form>-->
+        <!--</div>-->
+
+
     </div>
 </header>
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="post-preview">
-                <form action="/posts/create" method="post" th:object="${post}">
-                    Title:
-                    <input class="post-title" th:field="*{title}" />
-                    <br />
-                    Description:
-                    <input class="post-subtitle" th:field="*{body}" />
 
-                    <br />
-                    <input type="submit" />
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <footer th:replace="fragments/blog_template_footer :: footer-partial"></footer>
 
@@ -46,5 +97,17 @@
 
 <!-- Custom scripts for this template -->
 <script src="/js/clean-blog.min.js"></script>
+
+<script>
+
+    $(document).ready(function() {
+        "use strict";
+
+        $("#myModal").delay(2000).queue(function () {
+            $(this).modal();
+        });
+
+    });
+</script>
 </body>
 </html>
