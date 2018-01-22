@@ -24,7 +24,7 @@ public class PostService {
     public Post save(Post post) {
         // Generates a consecutive number
         post.setId(posts.size() + 1);
-        posts.add(post);
+        this.posts.add(post);
         return post;
     }
 
@@ -93,11 +93,10 @@ public class PostService {
                 "Take a look at this video all about the Seed to Seal process. http://seedtoseal.com/en\n" +
                 "\n" +
                 "**Question of the day** What do you find most interesting about our Seed to Seal process?"));
+        save(new Post("this is the title", "this is the body"));
     }
 
-    @GetMapping("posts/new")
-    public String showCreatePostForm(){
-        return "posts/new";
-
+    public void update(Post post) {
+        posts.set((int)post.getId() -1, post);
     }
 }

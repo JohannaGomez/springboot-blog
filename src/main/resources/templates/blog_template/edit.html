@@ -2,9 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/blog_template_head :: header('Blog Form')"></head>
 <style>
- .modal-dialog {
-     max-width: none !important;
- }
+    .modal-dialog {
+        max-width: none !important;
+    }
 
 
 
@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h1 data-toggle="modal" data-target="#myModalHorizontal">New posts!</h1>
+                    <h1 data-toggle="modal" data-target="#myModalHorizontal">Editing posts!</h1>
                     <span class="subheading">A Blog by Moms </span>
                 </div>
             </div>
@@ -37,7 +37,8 @@
                             <!--<h4 class="modal-title" id="myModalLabel">Please register!!!</h4>-->
                         </div>
                         <div class="modal-body">
-                            <form action="/posts/create" method="post" th:object="${post}">
+                            <form action="/posts/edit" method="post" th:object="${post}">
+                                <input type="hidden" th:field="*{id}" />
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <h6>New post title:</h6>
@@ -68,19 +69,6 @@
                 </div>
             </div>
         </div>
-
-
-        <!--<div id="create_post" class="invisible">-->
-            <!--<form action="/posts/create" method="post" th:object="${post}">-->
-                <!--New post title:-->
-                <!--<input class="post-title" th:field="*{title}" />-->
-                <!--<br />-->
-                <!--Description:-->
-                <!--<input class="post-subtitle" th:field="*{body}" />-->
-                <!--<br />-->
-                <!--<input type="submit" />-->
-            <!--</form>-->
-        <!--</div>-->
 
 
     </div>
