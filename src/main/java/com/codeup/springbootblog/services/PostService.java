@@ -96,9 +96,7 @@ public class PostService {
         save(new Post("this is the title", "this is the body"));
     }
 
-    @GetMapping("posts/new")
-    public String showCreatePostForm(){
-        return "posts/new";
-
+    public void update(Post post) {
+        posts.set((int)post.getId() -1, post);
     }
 }
