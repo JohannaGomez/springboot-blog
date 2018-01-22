@@ -31,8 +31,10 @@ public class PostsController {
 
     @GetMapping("/posts")
     public String allThePosts(Model viewModel) {
+        Post post = new Post();
         List<Post> posts = postService.findAll();
         viewModel.addAttribute("posts", posts);
+        viewModel.addAttribute("post", post);
 //        return "/posts/index";      -- This is my old index --
         return "/blog_template/index";    // -- This is the bootstrap template //
     }
