@@ -1,5 +1,6 @@
 package com.codeup.springbootblog.services;
 
+import com.codeup.springbootblog.daos.PostRepository;
 import com.codeup.springbootblog.models.Post;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,27 +10,46 @@ import java.util.List;
 
 @Service
 public class PostService {
-    private List<Post> posts;
+
+//===========================================================================================
+//6.-Remove the array list from the PostService class, and use your new interface to ensure =
+// posts are saved to and retrieved from your database.                                     =
+//===========================================================================================
+
+//    private List<Post> posts;
 
 
-    public PostService() {
-        posts = new ArrayList<>();
-        createPosts();
+//    public PostService() {
+//        posts = new ArrayList<>();
+//        createPosts();
+//    }
+
+//=======================================================================
+//5.-Autowire an instance of this interface into your PostService class.=
+//=======================================================================
+
+    private PostRepository postDao;
+
+    public PostService(PostRepository postDao) {
+        this.postDao = postDao;
     }
 
-    public List<Post> findAll() {
-        return posts;
+    public Iterable<Post> findAll() {
+        return postDao.findAll();
     }
 
     public Post save(Post post) {
-        // Generates a consecutive number
-        post.setId(posts.size() + 1);
-        this.posts.add(post);
+        postDao.save(post);
         return post;
     }
 
     public Post findOne(long id) {
-        return posts.get((int)(id - 1));
+        return postDao.findOne(id);
+
+    }
+
+    public void update(Post post) {
+        postDao.save(post);
     }
 
     private void createPosts() {
@@ -96,7 +116,5 @@ public class PostService {
         save(new Post("this is the title", "this is the body"));
     }
 
-    public void update(Post post) {
-        posts.set((int)post.getId() -1, post);
-    }
+
 }

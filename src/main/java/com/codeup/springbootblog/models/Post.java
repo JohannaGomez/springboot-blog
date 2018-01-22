@@ -1,8 +1,26 @@
 package com.codeup.springbootblog.models;
 
+import javax.persistence.*;
+
+//======================================================================
+//1.- Create a new database and database user for your application.    =
+//3.- Add the appropriate JPA annotations to your Post class.          =
+//======================================================================
+
+//@Entity is applied to the class which is going to be a table in the database:
+@Entity
+@Table(name = "posts")
 public class Post {
+
+    // @Id --> telling spring that this is going to be a primary key which is applied to one of my variables
+    // @GeneratedValue --> how the Id is going to be generated (automatic)
+    @Id @GeneratedValue
     private long id;
+
+    @Column(nullable = false)
     private String title;
+
+    @Column(nullable = true)
     private String body;
 
     public Post() {
