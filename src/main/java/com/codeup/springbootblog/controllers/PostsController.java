@@ -53,7 +53,7 @@ public class PostsController {
     public String showCreatePostForm(Model viewModel){
         Post post = new Post();
         viewModel.addAttribute("post", post);
-        return "blog_template/new";
+        return "/blog_template/new";
     }
 
     @PostMapping("posts/create")

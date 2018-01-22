@@ -93,6 +93,7 @@ public class PostService {
                 "Take a look at this video all about the Seed to Seal process. http://seedtoseal.com/en\n" +
                 "\n" +
                 "**Question of the day** What do you find most interesting about our Seed to Seal process?"));
+        save(new Post("this is the title", "this is the body"));
     }
 
     @GetMapping("posts/new")
