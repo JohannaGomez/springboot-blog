@@ -1,6 +1,7 @@
 package com.codeup.springbootblog.controllers;
 
 import com.codeup.springbootblog.daos.PostRepository;
+import com.codeup.springbootblog.daos.UsersRepository;
 import com.codeup.springbootblog.models.Ad;
 import com.codeup.springbootblog.models.Post;
 import com.codeup.springbootblog.services.PostService;
@@ -25,14 +26,13 @@ public class PostsController {
 
     private PostRepository postDao;
 
-    // 2.- Inject the dependency through the constructor and assign it to your instance variable
+    private UsersRepository usersDao;
 
-    public PostsController(PostService postService, PostRepository postDao) {
-        this.postService = postService; // This is the 1st time we assign something to postService.  When using final, we can not
-        // assign it anything else.
+    public PostsController(PostService postService, PostRepository postDao, UsersRepository usersDao) {
+        this.postService = postService;
         this.postDao = postDao;
+        this.usersDao = usersDao;
     }
-
 
     @GetMapping("/posts")
     public String allThePosts(Model viewModel) {
