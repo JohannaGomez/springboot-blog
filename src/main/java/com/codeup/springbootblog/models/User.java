@@ -75,7 +75,7 @@ public class User {
     }
 
 
-    // Getters and setters for List<Post> for when is time to ask for all the posts of one user.
+    // Getters and setters for List<Post> for when is time to ask f
     public List<Post> getPosts() {
         return posts;
     }
