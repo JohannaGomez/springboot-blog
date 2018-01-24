@@ -22,9 +22,11 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    // one user can have a few posts.  User is the main character
+
+    // one user can have a few posts.  User is the main character.  Cascade all means is not going to allow
+    // to have empty users for a post.
     // Data type list for the posts and the name of the instance in plural.
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Post> posts;
 
 
@@ -70,6 +72,16 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+
+    // Getters and setters for List<Post> for when is time to ask for all the posts of one user.
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
 

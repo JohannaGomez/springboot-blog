@@ -14,7 +14,7 @@ public class Post {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = true)
+    @Column(columnDefinition = "TEXT")
     private String body;
 
     //2.- In your User and Post classes, define the post - user relationship.
@@ -22,7 +22,7 @@ public class Post {
     // Manually insert a user record in the database.
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="user_id")  //This line is not necessary bc User hast the mapping to user in the one to many
     private User user;
 
 
