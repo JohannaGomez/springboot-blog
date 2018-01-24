@@ -25,19 +25,19 @@ public class PostsController {
 
     private final PostService postService;
 
-    private PostRepository postDao;
+//    private PostRepository postDao;
 
     private UsersRepository usersDao;
 
-    public PostsController(PostService postService, PostRepository postDao, UsersRepository usersDao) {
+    public PostsController(PostService postService, UsersRepository usersDao) {
         this.postService = postService;
-        this.postDao = postDao;
+//        this.postDao = postDao;
         this.usersDao = usersDao;
     }
 
     @GetMapping("/posts")
     public String allThePosts(Model viewModel) {
-        viewModel.addAttribute("posts", postDao.findAll());
+        viewModel.addAttribute("posts", postService.findAll());
         return "/blog_template/index";
     }
 
