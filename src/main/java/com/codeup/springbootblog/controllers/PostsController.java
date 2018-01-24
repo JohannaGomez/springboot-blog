@@ -4,6 +4,7 @@ import com.codeup.springbootblog.daos.PostRepository;
 import com.codeup.springbootblog.daos.UsersRepository;
 import com.codeup.springbootblog.models.Ad;
 import com.codeup.springbootblog.models.Post;
+import com.codeup.springbootblog.models.User;
 import com.codeup.springbootblog.services.PostService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.stereotype.Controller;
@@ -64,6 +65,7 @@ public class PostsController {
     @ResponseBody
     // we are not using pathvariable here because is comming from a form
     public String savePost(@ModelAttribute Post post){
+        post.setUser(usersDao.findOne((long) 1));  // user is hardcoded  in this line.
         postService.save(post);
         return post.getTitle() + " " + post.getBody();
     }
