@@ -2,18 +2,12 @@ package com.codeup.springbootblog.models;
 
 import javax.persistence.*;
 
-//======================================================================
-//1.- Create a new database and database user for your application.    =
-//3.- Add the appropriate JPA annotations to your Post class.          =
-//======================================================================
 
-//@Entity is applied to the class which is going to be a table in the database:
 @Entity
 @Table(name = "posts")
 public class Post {
 
-    // @Id --> telling spring that this is going to be a primary key which is applied to one of my variables
-    // @GeneratedValue --> how the Id is going to be generated (automatic)
+
     @Id @GeneratedValue
     private long id;
 
@@ -23,28 +17,22 @@ public class Post {
     @Column(nullable = true)
     private String body;
 
+    //2.- In your User and Post classes, define the post - user relationship.
+    // Log in to the mysql server and verify that the generated table structure matches what you are expecting.
+    // Manually insert a user record in the database.
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private User user;
+
+
+
     public Post() {
     }
 
-    public Post(String title, String body) {
+    public Post(String title, String body, User owner) {
         this.title = title;
         this.body = body;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
+        this.user = owner;
     }
 
     public long getId() {
@@ -54,4 +42,26 @@ public class Post {
     public void setId(long id) {
         this.id = id;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
 }

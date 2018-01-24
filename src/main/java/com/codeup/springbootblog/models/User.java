@@ -12,24 +12,26 @@ public class User {
     @Id  @GeneratedValue
     private long id;
 
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
     private String username;
 
     @Column(nullable = true)
     private String email;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private String password;
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 
     //2.- In your User and Post classes, define the post - user relationship.
     // Log in to the mysql server and verify that the generated table structure matches what you are expecting.
     // Manually insert a user record in the database.
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    private User owner;
-//
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ad")
-//    private List<AdImage> images;
+
 
 
 }

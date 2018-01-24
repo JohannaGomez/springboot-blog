@@ -53,6 +53,7 @@ public class PostsController {
 
     @GetMapping("posts/new")
     // to catch the form
+    // "/new" is to create a new post and "/create" is the one that is going to show that it was created.
     public String showCreatePostForm(Model viewModel){
         Post post = new Post();
         viewModel.addAttribute("post", post);
