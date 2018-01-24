@@ -67,7 +67,7 @@ public class PostsController {
     @ResponseBody
     // we are not using pathvariable here because is comming from a form
     public String savePost(@ModelAttribute Post post){
-        post.setUser(usersDao.findOne((long) 1));  // user is hardcoded  in this line.
+        post.setUser(usersDao.findOne((long) 2));  // user object (id) is hardcoded  in this line.
         postService.save(post);
         return post.getTitle() + " " + post.getBody();
     }
