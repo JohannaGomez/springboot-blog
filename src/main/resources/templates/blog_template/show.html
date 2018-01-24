@@ -14,9 +14,7 @@
                     <div class="post-heading">
                         <h1 th:text="${post.title}"></h1>
                         <h2 class="subheading">Problems look mighty small from 150 miles up</h2>
-                        <span class="meta">Posted by:
-                            <a th:href="${user.email}"> <span th:text="${user.username}"></span></a>on August 24, 2017</span>
-
+                        <span class="meta">Posted by: <a th:href="${user.email}"> <span th:text="${user.email}"></span></a><span> on August 24, 2017</span></span>
                     </div>
                 </div>
             </div>
