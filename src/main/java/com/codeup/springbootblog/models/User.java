@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -15,11 +16,22 @@ public class User {
     @Column(unique = true, nullable = false)
     private String username;
 
-    @Column(nullable = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
     private String password;
+
+    // one user can have a few posts.  User is the main character
+    // Data type list for the posts and the name of the instance in plural.
+    @OneToMany
+    private List<Post> posts;
+
+
+    public User() {
+
+    }
+
 
     public User(String username, String email, String password) {
         this.username = username;
@@ -27,9 +39,6 @@ public class User {
         this.password = password;
     }
 
-    public User() {
-
-    }
 
     public long getId() {
         return id;
@@ -62,12 +71,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-
-//2.- In your User and Post classes, define the post - user relationship.
-    // Log in to the mysql server and verify that the generated table structure matches what you are expecting.
-    // Manually insert a user record in the database.
-
 
 
 
