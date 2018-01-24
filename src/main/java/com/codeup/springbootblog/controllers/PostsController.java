@@ -47,6 +47,8 @@ public class PostsController {
     @GetMapping("/posts/{id}")
     public String showIndividualPost(@PathVariable int id, Model viewModel) {
         Post post =  postService.findOne(id);
+        User user = post.getUser();
+        viewModel.addAttribute("user", user);
         viewModel.addAttribute("post", post);
         return "/blog_template/show";
     }

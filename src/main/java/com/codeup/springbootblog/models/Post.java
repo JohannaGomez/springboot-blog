@@ -21,7 +21,8 @@ public class Post {
     // Log in to the mysql server and verify that the generated table structure matches what you are expecting.
     // Manually insert a user record in the database.
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name="user_id")
     private User user;
 
 
@@ -29,10 +30,10 @@ public class Post {
     public Post() {
     }
 
-    public Post(String title, String body, User owner) {
+    public Post(String title, String body, User user) {
         this.title = title;
         this.body = body;
-        this.user = owner;
+        this.user = user;
     }
 
     public long getId() {
@@ -57,6 +58,10 @@ public class Post {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public void setUser(User user) {

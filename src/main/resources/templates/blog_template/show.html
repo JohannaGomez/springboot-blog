@@ -2,28 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/blog_template_head :: header(${post.title})"></head>
 
-<!--<head th:fragment="header(title)">-->
-
-    <!--<meta charset="utf-8"/>-->
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>-->
-    <!--<meta name="description" content=""/>-->
-    <!--<meta name="author" content=""/>-->
-
-    <!--<title th:text="${post.title}"></title>-->
-
-    <!--&lt;!&ndash; Bootstrap core CSS &ndash;&gt;-->
-    <!--<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>-->
-
-    <!--&lt;!&ndash; Custom fonts for this template &ndash;&gt;-->
-    <!--<link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>-->
-    <!--<link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'/>-->
-    <!--<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'/>-->
-
-    <!--&lt;!&ndash; Custom styles for this template &ndash;&gt;-->
-    <!--<link href="css/clean-blog.min.css" rel="stylesheet"/>-->
-
-<!--</head>-->
-
 <body>
     <nav th:replace="fragments/blog_template_navbar :: navbar-partial"></nav>
 
@@ -36,9 +14,9 @@
                     <div class="post-heading">
                         <h1 th:text="${post.title}"></h1>
                         <h2 class="subheading">Problems look mighty small from 150 miles up</h2>
-                        <span class="meta">Posted by
-                <a href="#">Start Bootstrap</a>
-                on August 24, 2017</span>
+                        <span class="meta">Posted by:
+                            <a th:href="${user.email}"> <span th:text="${user.username}"></span></a>on August 24, 2017</span>
+
                     </div>
                 </div>
             </div>
