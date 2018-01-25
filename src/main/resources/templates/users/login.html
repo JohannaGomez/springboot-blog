@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/blog_template_head :: header('Sign up!')"></head>
+<style>
+    .modal-dialog {
+        max-width: none !important;
+    }
+
+
+
+
+</style>
+<body>
+<nav th:replace="fragments/blog_template_navbar :: navbar-partial"></nav>
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('/img/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1 data-toggle="modal" data-target="#myModalHorizontal">New posts!</h1>
+                    <span class="subheading">A Blog by Moms </span>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Modal-->
+        <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
+        <!--<div class="col-lg-8 col-md-10 mx-auto">-->
+        <!--<div class="modal-dialog" role="document">-->
+        <!--<div class="modal-content">-->
+        <!--<div class="modal-header">-->
+        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Close</span></button>-->
+        <!--&lt;!&ndash;<h4 class="modal-title" id="myModalLabel">Please register!!!</h4>&ndash;&gt;-->
+        <!--</div>-->
+        <!--<div class="modal-body">-->
+        <!--<form action="/posts/create" method="post" th:object="${post}">-->
+        <!--<div class="row">-->
+        <!--<div class="col-lg-3">-->
+        <!--<h6>New post title:</h6>-->
+        <!--</div>-->
+        <!--<div class="col-lg-offset-1 col-lg-8">-->
+        <!--<input class="post-title" style="width: 100%;" th:field="*{title}" />-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<br/>-->
+        <!--<div class="row">-->
+        <!--<div class="col-lg-3">-->
+        <!--<h6>Description:</h6>-->
+        <!--</div>-->
+        <!--<div class="col-lg-offset-1 col-lg-8">-->
+        <!--<input class="post-title" style="width: 100%;" th:field="*{body}" />-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<br/>-->
+        <!--<div class="row">-->
+        <!--<div class="col-lg-2" style="margin: 0 auto">-->
+        <!--<input type="submit" class="btn btn-primary btn-block" />-->
+        <!--</div>-->
+        <!--<br/>-->
+        <!--</div>-->
+        <!--</form>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <h1>Log In</h1>
+        <div th:if="${param.error}">
+            Invalid Username and Password.
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+
+        <form th:action="@{/login}" method="post">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" />
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" />
+            <input type="submit" value="Log In" />
+        </form>
+
+
+    </div>
+</header>
+
+
+
+
+<footer th:replace="fragments/blog_template_footer :: footer-partial"></footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="/js/clean-blog.min.js"></script>
+
+<!--<script>-->
+
+<!--$(document).ready(function() {-->
+<!--"use strict";-->
+
+<!--$("#myModal").delay(2000).queue(function () {-->
+<!--$(this).modal();-->
+<!--});-->
+
+<!--});-->
+<!--</script>-->
+</body>
+</html>
