@@ -20,7 +20,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
     @Bean
-    // telling that this object should be built automaticly
+    // telling that this object should be built automatically
     public PasswordEncoder passwordEncoder() {
         //Hashing passwords:
         return new BCryptPasswordEncoder();
@@ -49,14 +49,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             /* Pages that can be viewed without having to log in */
             .and()
                 .authorizeRequests()
-                .antMatchers("/", "/posts") // anyone can see the home and the ads pages
+                .antMatchers("/", "/posts") // anyone can see the home and the posts pages
                 .permitAll()
             /* Pages that require athentication */
             .and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/posts/create", // only authenticated users can create ads
-                        "/posts/{id}/edit" // only authenticated users can edit ads
+                        "/posts/create", // only authenticated users can create posts
+                        "/posts/{id}/edit", // only authenticated users can edit posts
+                        "/posts/new",
+                        "posts/create"
                 )
                 .authenticated()
         ;

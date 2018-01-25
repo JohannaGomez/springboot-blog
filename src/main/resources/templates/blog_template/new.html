@@ -37,7 +37,7 @@
                             <!--<h4 class="modal-title" id="myModalLabel">Please register!!!</h4>-->
                         </div>
                         <div class="modal-body">
-                            <form action="/posts/create" method="post" th:object="${post}">
+                            <form th:action="@{/posts/create}" method="post" th:object="${post}">
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <h6>New post title:</h6>
@@ -98,6 +98,8 @@
 <!-- Custom scripts for this template -->
 <script src="/js/clean-blog.min.js"></script>
 
+
+<!--Script for modal form-->
 <script>
 
     $(document).ready(function() {

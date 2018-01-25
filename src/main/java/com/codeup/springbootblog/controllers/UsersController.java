@@ -23,18 +23,20 @@ public class UsersController {
 
     @GetMapping("/user/sign-up")
     public String showSignUpForm(Model viewModel) {
+        // new User to catch the form
         viewModel.addAttribute("user", new User());
         return "users/sign-up";
     }
 
-    @PostMapping("/sign-up")
+    @PostMapping("/user/sign-up")
     public String singUpNewUser (@ModelAttribute User user) {
         // we need to hash passwords (using security configuration), after changing in the configuration class, create
         // the passwordEncoder in this controller.
         String hash = encoder.encode(user.getPassword());
         user.setPassword(hash);
         usersRepository.save(user);
-        return "redirect:/login";  //  I don't have a login page yet.
+
+        return "redirect:/login";
 
     }
 

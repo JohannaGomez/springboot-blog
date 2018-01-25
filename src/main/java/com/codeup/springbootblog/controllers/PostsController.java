@@ -7,6 +7,7 @@ import com.codeup.springbootblog.models.Post;
 import com.codeup.springbootblog.models.User;
 import com.codeup.springbootblog.services.PostService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,32 +15,26 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-// Dependency injection
-// 1.- Constructor injection (preferred) --> required dependencies
-// 2.- Setter injection --> optional dependencies
 
 @Controller
 public class PostsController {
 
-    //    1.- Create an instance variable with your dependency.
 
     private final PostService postService;
 
-//    private PostRepository postDao;
 
     private UsersRepository usersDao;
 
     public PostsController(PostService postService, UsersRepository usersDao) {
         this.postService = postService;
-//        this.postDao = postDao;
         this.usersDao = usersDao;
     }
 
     @GetMapping("/posts")
     public String allThePosts(Model viewModel) {
         // to test if the authentication works, I need to sout it:
-        User user = usersDao.findByUsername("pao");
-        System.out.println(user.getEmail());
+//        User user = usersDao.findByUsername("pao");
+//        System.out.println(user.getEmail());
 
         viewModel.addAttribute("posts", postService.findAll());
         return "/blog_template/index";
@@ -68,12 +63,13 @@ public class PostsController {
     }
 
     @PostMapping("posts/create")
-    @ResponseBody
     // we are not using pathvariable here because is comming from a form
     public String savePost(@ModelAttribute Post post){
-        post.setUser(usersDao.findOne((long) 2));  // user object (id) is hardcoded  in this line.
+        // this is coming form the db, and UserWithRoles is not mapped.
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        post.setUser(usersDao.findOne(user.getId()));
         postService.save(post);
-        return post.getTitle() + " " + post.getBody();
+        return "redirect:/posts";
     }
 
     @GetMapping("posts/{id}/edit")
@@ -97,7 +93,8 @@ public class PostsController {
     }
 
 
-
+    // feature:  ability a user has in my application (follow a friend, mass text, program an event)
+    //
 
 
 }

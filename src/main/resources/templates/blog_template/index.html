@@ -1,15 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="fragments/blog_template_head :: header('Blog posts index')"></head>
-<style>
-  .edit_delete_row{
-    margin-bottom: 20px;
-  }
-
-  .edit_btn, .delete_btn {
-    height: 45px;
-  }
-</style>
 <body>
   <nav th:replace="fragments/blog_template_navbar :: navbar-partial"></nav>
 

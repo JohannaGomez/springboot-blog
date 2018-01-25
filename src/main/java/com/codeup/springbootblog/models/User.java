@@ -34,7 +34,7 @@ public class User {
 
     }
 
-    // It is cloning the user:
+    // It is cloning the user (for security measures):
     public User(User copy) {
         id = copy.id; // This line is SUPER important! Many things won't work if it's absent
         email = copy.email;
