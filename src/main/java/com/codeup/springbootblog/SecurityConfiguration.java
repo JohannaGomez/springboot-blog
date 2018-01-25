@@ -1,8 +1,11 @@
 package com.codeup.springbootblog;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -13,10 +16,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //        this.usersLoader = usersLoader;
 //    }
 //
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
+    @Bean
+    // telling that this object should be built automaticly
+    public PasswordEncoder passwordEncoder() {
+        //Hashing passwords:
+        return new BCryptPasswordEncoder();
+    }
 //
 //    @Override
 //    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -33,27 +38,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/posts") // user's home page, it can be any URL
-                .permitAll(); // Anyone can go to the login page
+                .permitAll() // Anyone can go to the login page
+        .and()
+                .authorizeRequests()
+                .antMatchers("/", "/posts") // anyone can see the home and posts page
+                .permitAll()
+                ;
     }
 }
-
-
-
-            /* Logout configuration */
-//                .and()
-//                .logout()
-//                .logoutSuccessUrl("/login?logout") // append a query string value
-            /* Pages that can be viewed without having to log in */
-//                .and()
-//                .authorizeRequests()
-//                .antMatchers("/", "/ads") // anyone can see the home and the ads pages
-//                .permitAll()
-            /* Pages that require athentication */
-//                .and()
-//                .authorizeRequests()
-//                .antMatchers(
-//                        "/ads/create", // only authenticated users can create ads
-//                        "/ads/{id}/edit", // only authenticated users can edit ads
-//                )
-//                .authenticated()
-//        ;
