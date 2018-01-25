@@ -1,8 +1,10 @@
 package com.codeup.springbootblog.controllers;
 
 import com.codeup.springbootblog.daos.PostRepository;
+import com.codeup.springbootblog.daos.UsersRepository;
 import com.codeup.springbootblog.models.Ad;
 import com.codeup.springbootblog.models.Post;
+import com.codeup.springbootblog.models.User;
 import com.codeup.springbootblog.services.PostService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.stereotype.Controller;
@@ -23,20 +25,19 @@ public class PostsController {
 
     private final PostService postService;
 
-    private PostRepository postDao;
+//    private PostRepository postDao;
 
-    // 2.- Inject the dependency through the constructor and assign it to your instance variable
+    private UsersRepository usersDao;
 
-    public PostsController(PostService postService, PostRepository postDao) {
-        this.postService = postService; // This is the 1st time we assign something to postService.  When using final, we can not
-        // assign it anything else.
-        this.postDao = postDao;
+    public PostsController(PostService postService, UsersRepository usersDao) {
+        this.postService = postService;
+//        this.postDao = postDao;
+        this.usersDao = usersDao;
     }
-
 
     @GetMapping("/posts")
     public String allThePosts(Model viewModel) {
-        viewModel.addAttribute("posts", postDao.findAll());
+        viewModel.addAttribute("posts", postService.findAll());
         return "/blog_template/index";
     }
 
@@ -46,6 +47,8 @@ public class PostsController {
     @GetMapping("/posts/{id}")
     public String showIndividualPost(@PathVariable int id, Model viewModel) {
         Post post =  postService.findOne(id);
+        User user = post.getUser();
+        viewModel.addAttribute("user", user);
         viewModel.addAttribute("post", post);
         return "/blog_template/show";
     }
@@ -53,6 +56,7 @@ public class PostsController {
 
     @GetMapping("posts/new")
     // to catch the form
+    // "/new" is to create a new post and "/create" is the one that is going to show that it was created.
     public String showCreatePostForm(Model viewModel){
         Post post = new Post();
         viewModel.addAttribute("post", post);
@@ -63,6 +67,7 @@ public class PostsController {
     @ResponseBody
     // we are not using pathvariable here because is comming from a form
     public String savePost(@ModelAttribute Post post){
+        post.setUser(usersDao.findOne((long) 2));  // user object (id) is hardcoded  in this line.
         postService.save(post);
         return post.getTitle() + " " + post.getBody();
     }
