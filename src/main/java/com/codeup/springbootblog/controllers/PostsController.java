@@ -37,6 +37,10 @@ public class PostsController {
 
     @GetMapping("/posts")
     public String allThePosts(Model viewModel) {
+        // to test if the authentication works, I need to sout it:
+        User user = usersDao.findByUsername("pao");
+        System.out.println(user.getEmail());
+
         viewModel.addAttribute("posts", postService.findAll());
         return "/blog_template/index";
     }
