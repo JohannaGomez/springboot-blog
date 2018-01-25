@@ -10,4 +10,8 @@ import org.springframework.stereotype.Repository;
 public interface UsersRepository extends CrudRepository<User, Long> {
     //    "Long" is the type of the primary key.
 
+    // HQL
+    // query methods:
+
+    User findByUsername(String username);
 }

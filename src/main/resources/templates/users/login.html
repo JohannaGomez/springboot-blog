@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/blog_template_head :: header('Blog Form')"></head>
+<head th:replace="fragments/blog_template_head :: header('Sign up!')"></head>
 <style>
- .modal-dialog {
-     max-width: none !important;
- }
+    .modal-dialog {
+        max-width: none !important;
+    }
 
 
 
@@ -20,8 +20,14 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h1 data-toggle="modal" data-target="#myModalHorizontal">New posts!</h1>
+                    <h1 data-toggle="modal" data-target="#myModalHorizontal">Login!</h1>
                     <span class="subheading">A Blog by Moms </span>
+                    <div th:if="${param.error}">
+                        Invalid Username and Password.
+                    </div>
+                    <div th:if="${param.logout}">
+                        You have been logged out.
+                    </div>
                 </div>
             </div>
         </div>
@@ -33,26 +39,25 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Close</span></button>
-                            <!--<h4 class="modal-title" id="myModalLabel">Please register!!!</h4>-->
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Close</span></button>
                         </div>
                         <div class="modal-body">
-                            <form th:action="@{/posts/create}" method="post" th:object="${post}">
+                            <form th:action="@{/login}" method="post">
                                 <div class="row">
                                     <div class="col-lg-3">
-                                        <h6>New post title:</h6>
+                                        <h6>Username: </h6>
                                     </div>
                                     <div class="col-lg-offset-1 col-lg-8">
-                                        <input class="post-title" style="width: 100%;" th:field="*{title}" />
+                                        <input class="post-title" style="width: 100%;" id="username" name="username" type="text" />
                                     </div>
                                 </div>
                                 <br/>
                                 <div class="row">
                                     <div class="col-lg-3">
-                                        <h6>Description:</h6>
+                                        <h6>Password: </h6>
                                     </div>
                                     <div class="col-lg-offset-1 col-lg-8">
-                                        <input class="post-title" style="width: 100%;" th:field="*{body}" />
+                                        <input class="post-title" style="width: 100%;" id="password}" name="password" type="password" />
                                     </div>
                                 </div>
                                 <br/>
@@ -68,21 +73,6 @@
                 </div>
             </div>
         </div>
-
-
-        <!--<div id="create_post" class="invisible">-->
-            <!--<form action="/posts/create" method="post" th:object="${post}">-->
-                <!--New post title:-->
-                <!--<input class="post-title" th:field="*{title}" />-->
-                <!--<br />-->
-                <!--Description:-->
-                <!--<input class="post-subtitle" th:field="*{body}" />-->
-                <!--<br />-->
-                <!--<input type="submit" />-->
-            <!--</form>-->
-        <!--</div>-->
-
-
     </div>
 </header>
 
@@ -98,18 +88,17 @@
 <!-- Custom scripts for this template -->
 <script src="/js/clean-blog.min.js"></script>
 
-
-<!--Script for modal form-->
 <script>
 
-    $(document).ready(function() {
-        "use strict";
+$(document).ready(function() {
+    "use strict";
 
-        $("#myModal").delay(2000).queue(function () {
-            $(this).modal();
-        });
-
+    $("#myModal").delay(2000).queue(function () {
+        $(this).modal();
     });
+
+});
+
 </script>
 </body>
 </html>
