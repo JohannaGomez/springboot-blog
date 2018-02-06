@@ -37,7 +37,7 @@
                             <!--<h4 class="modal-title" id="myModalLabel">Please register!!!</h4>-->
                         </div>
                         <div class="modal-body">
-                            <form action="/posts/edit" method="post" th:object="${post}">
+                            <form th:action="@{/posts/edit}" method="post" th:object="${post}">
                                 <input type="hidden" th:field="*{id}" />
                                 <div class="row">
                                     <div class="col-lg-3">
