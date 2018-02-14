@@ -30,7 +30,7 @@ public class PostsController {
         this.usersDao = usersDao;
     }
 
-    @GetMapping("/posts")
+    @GetMapping("/")
     public String allThePosts(Model viewModel) {
         // to test if the authentication works, I need to sout it:
 //        User user = usersDao.findByUsername("pao");
