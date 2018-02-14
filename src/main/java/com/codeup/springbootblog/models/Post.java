@@ -14,7 +14,7 @@ public class Post {
     @Column(nullable = false)
     private String title;
 
-    @Column(columnDefinition = "TEXT", length = 500)
+    @Column(columnDefinition = "TEXT")
     private String body;
 
     //2.- In your User and Post classes, define the post - user relationship.
