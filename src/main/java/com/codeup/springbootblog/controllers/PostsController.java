@@ -69,7 +69,7 @@ public class PostsController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(usersDao.findOne(user.getId()));
         postService.save(post);
-        return "redirect:/posts";
+        return "redirect:/";
     }
 
     @GetMapping("posts/{id}/edit")
@@ -82,14 +82,14 @@ public class PostsController {
     @GetMapping("posts/{id}/delete")
     public String deletePost(@PathVariable long id, Model viewModel){
         postService.delete(id);
-        return "redirect:/posts";
+        return "redirect:/";
     }
 
 
     @PostMapping("posts/edit")
     public String updatePost(@ModelAttribute Post post){
         postService.update(post);
-        return "redirect:/posts";
+        return "redirect:/";
     }
 
 
