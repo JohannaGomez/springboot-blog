@@ -6,9 +6,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
 
 @Controller
 public class UsersController {
@@ -30,7 +33,33 @@ public class UsersController {
     }
 
     @PostMapping("/user/sign-up")
-    public String singUpNewUser (@ModelAttribute User user) {
+    public String singUpNewUser (@Valid User user, Errors validation, Model viewModel) {
+        String username = user.getUsername();
+        User existingUsername = usersRepository.findByUsername(username);
+        User existingEmail = usersRepository.findByEmail(user.getEmail());
+
+
+
+        if (existingUsername != null) {
+
+            validation.rejectValue("username", "user.username", "Duplicated username " + username);
+
+        }
+
+        if (existingEmail != null) {
+
+            validation.rejectValue("email", "user.email", "Duplicated email " + user.getEmail());
+
+        }
+
+        if (validation.hasErrors()) {
+            viewModel.addAttribute("errors", validation);
+            viewModel.addAttribute("user", user);
+            return "users/sign-up";
+        }
+
+
+
         // we need to hash passwords (using security configuration), after changing in the configuration class, create
         // the passwordEncoder in this controller.
         String hash = encoder.encode(user.getPassword());
@@ -41,9 +70,12 @@ public class UsersController {
 
     }
 
+
+
+
     // Show parent profile:
     @GetMapping("/user/profile")
-    public String showUserProfile(Model viewModel) {
+    public String showProfile(Model viewModel) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         viewModel.addAttribute("user", user);
         return "/users/profile";
