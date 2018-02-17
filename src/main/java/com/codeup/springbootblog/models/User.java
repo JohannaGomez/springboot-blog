@@ -1,9 +1,12 @@
 package com.codeup.springbootblog.models;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -14,13 +17,23 @@ public class User {
     private long id;
 
     @Column(unique = true, nullable = false)
+    @NotBlank(message = "Username can't be empty")
+    @Size(min = 8, message = "Username must be at least 8 characters.")
     private String username;
 
+
     @Column(nullable = false, unique = true)
+    @NotBlank(message = "email can't be empty")
+    @Size(min = 8, message = "email must be valid.")
     private String email;
 
     @Column(nullable = false)
+    @NotBlank(message = "password can't be empty")
+    @Size(min = 8, message = "Password must be at least 8 characters.")
     private String password;
+
+    @Column
+    private String profile_pic;
 
 
     // one user can have a few posts.  User is the main character.  Cascade all means is not going to allow
@@ -40,12 +53,14 @@ public class User {
         email = copy.email;
         username = copy.username;
         password = copy.password;
+        profile_pic = copy.profile_pic;
     }
 
-    public User(String username, String email, String password) {
+    public User(String username, String email, String password, String profile_pic) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.profile_pic = profile_pic;
     }
 
 
@@ -81,6 +96,13 @@ public class User {
         this.password = password;
     }
 
+    public String getProfile_pic() {
+        return profile_pic;
+    }
+
+    public void setProfile_pic(String profile_pic) {
+        this.profile_pic = profile_pic;
+    }
 
     // Getters and setters for List<Post> for when is time to ask f
     public List<Post> getPosts() {
