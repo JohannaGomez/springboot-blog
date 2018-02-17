@@ -2,6 +2,7 @@ package com.codeup.springbootblog.controllers;
 
 import com.codeup.springbootblog.daos.UsersRepository;
 import com.codeup.springbootblog.models.User;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +39,14 @@ public class UsersController {
 
         return "redirect:/login";
 
+    }
+
+    // Show parent profile:
+    @GetMapping("/user/profile")
+    public String showUserProfile(Model viewModel) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        viewModel.addAttribute("user", user);
+        return "/users/profile";
     }
 
 }
