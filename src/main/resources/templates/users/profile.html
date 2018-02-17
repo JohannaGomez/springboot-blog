@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/blog_template_head :: header('Sign up!')"></head>
+<head th:replace="fragments/blog_template_head :: header('Viewing profile')"></head>
 
 <body>
 <nav th:replace="fragments/blog_template_navbar :: navbar-partial"></nav>
@@ -12,13 +12,23 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h1 data-toggle="modal" data-target="#myModalHorizontal">Login!</h1>
+                    <h1>viewing profile</h1>
                     <span class="subheading">A Blog by Moms </span>
-                    <div th:if="${param.error}">
-                        Invalid Username and Password.
+
+                    <div class="row pb-2">
+                        <div class="col-lg-12">
+                            <h2 style="text-align: center" class="mb-4">Your user profile:</h2>
+                        </div>
                     </div>
-                    <div th:if="${param.logout}">
-                        You have been logged out.
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <h4>Username: </h4>
+                            <h4>e-mail:</h4>
+                        </div>
+                        <div class="offset-lg-1 col-lg-7">
+                            <h4><span th:text="${user.username}"></span></h4>
+                            <h4><span th:text="${user.email}"></span></h4>
+                        </div>
                     </div>
                 </div>
             </div>
