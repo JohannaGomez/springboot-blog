@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -73,12 +74,28 @@ public class UsersController {
 
 
 
-    // Show parent profile:
+    // Show user profile:
     @GetMapping("/user/profile")
     public String showProfile(Model viewModel) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         viewModel.addAttribute("user", user);
         return "/users/profile";
+    }
+
+
+    // Edit user profile (show the form):
+    @GetMapping("/user/{id}/edit")
+    public String showEditForm(@PathVariable long id, Model viewModel){
+        User user = usersRepository.findOne(id);
+        viewModel.addAttribute("user", user);
+        return "/users/edit_parent_profile";
+    }
+
+    // Edit user profile (populate the form):
+    @PostMapping("/user/edit")
+    public String updateUser(@ModelAttribute User user){
+        usersRepository.save(user);
+        return "redirect:/login";
     }
 
 }

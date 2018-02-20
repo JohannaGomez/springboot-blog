@@ -81,20 +81,6 @@
     </div>
 </header>
 
-<!--<h1>Create an account</h1>-->
-<!--<form th:action="@{/user/sign-up}" method="POST" th:object="${user}">-->
-<!--<label for="username">Username</label>-->
-<!--<input id="username" th:field="*{username}" />-->
-
-<!--<label for="email">Email</label>-->
-<!--<input id="email" th:field="*{email}" />-->
-
-<!--<label for="password">Password</label>-->
-<!--<input id="password" type="password" th:field="*{password}" />-->
-
-<!--<input value="Sign me up!" type="submit" />-->
-<!--</form>-->
-
 
 <footer th:replace="fragments/blog_template_footer :: footer-partial"></footer>
 
@@ -110,7 +96,7 @@
     $(document).ready(function() {
         "use strict";
 
-        $("#myModal").delay(2000).queue(function () {
+        $("#myModal").delay(1000).queue(function () {
             $(this).modal();
         });
 
