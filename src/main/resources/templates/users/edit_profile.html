@@ -26,6 +26,36 @@
             </div>
         </div>
 
+        <form th:action="@{/user/edit}" method="post" th:object="${user}">
+            <input type="hidden" th:field="*{id}" />
+            <div class="content-area p-4">
+                <div class="justify-content-center mb-4">
+
+                    <div class="col-md-6">
+                        <label> Profile Picture:</label>
+                        <br />
+                        <img th:src="${user.profile_pic}" />
+                        <br />
+                        <button type="button" class="btn btn-secondary submit" id="upload-button">Upload New Picture</button>
+                    </div>
+
+                    <div class="col-md-6">
+                        <input type="hidden" th:field="*{profile_pic}"/>
+                        <input th:field="*{username}" />
+                        <input type="hidden" th:field="*{password}" />
+                        <input th:field="*{email}" />
+                    </div>
+
+
+                </div>
+                <div class="offset-lg-9 col-lg-3" style="margin: 0 auto">
+                    <input type="submit" class="btn btn-warning btn-block" />
+                </div>
+            </div>
+        </form>
+
+
+
 
         <!--Modal-->
         <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
@@ -91,16 +121,10 @@
 <!-- Custom scripts for this template -->
 <script src="/js/clean-blog.min.js"></script>
 
-<!--<script>-->
 
-    <!--$(document).ready(function() {-->
-        <!--"use strict";-->
+<!--File stack script-->
+<script src="https://static.filestackapi.com/v3/filestack.js"></script>
+<script src="/js/edit_profile.js"></script>
 
-        <!--$("#myModal").delay(1000).queue(function () {-->
-            <!--$(this).modal();-->
-        <!--});-->
-
-    <!--});-->
-<!--</script>-->
 </body>
 </html>
