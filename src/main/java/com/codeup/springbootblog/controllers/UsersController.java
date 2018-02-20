@@ -88,7 +88,7 @@ public class UsersController {
     public String showEditForm(@PathVariable long id, Model viewModel){
         User user = usersRepository.findOne(id);
         viewModel.addAttribute("user", user);
-        return "/users/edit_parent_profile";
+        return "/users/edit_profile";
     }
 
     // Edit user profile (populate the form):
