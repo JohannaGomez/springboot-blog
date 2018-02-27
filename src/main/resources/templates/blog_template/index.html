@@ -31,15 +31,16 @@
               <p class="post-subtitle" th:text="${post.body}"></p>
 
               <!--<p class="post-meta">Posted by:-->
-                <!--<a href="#">Lemon and Lavender Lounge ~ January Essential Oils Basic Course</a>-->
-                <!--on September 24, 2017</p>-->
+                <!--<span th:text="${post.user_id}"></span>-->
+              <!--</p>-->
+
               <div class="row edit_delete_row">
-                <div class="col-lg-4">
+                <div class="col-lg-4" sec:authorize="isAuthenticated()">
                   <a class="btn btn-warning btn-block edit_btn" th:href="${'/posts/'+post.id+'/edit'}">Edit</a>
                 </div>
                 <div class="col-lg-4">
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4" sec:authorize="isAuthenticated()">
                   <a class="btn btn-danger btn-block delete_btn" th:href="${'/posts/'+post.id+'/delete'}">Delete</a>
                 </div>
               </div>

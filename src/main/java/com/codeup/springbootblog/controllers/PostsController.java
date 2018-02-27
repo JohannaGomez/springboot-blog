@@ -37,6 +37,7 @@ public class PostsController {
 //        System.out.println(user.getEmail());
 
         viewModel.addAttribute("posts", postService.findAll());
+//        viewModel.addAttribute("users", usersDao.findAll()); // adding this line//
         return "/blog_template/index";
     }
 
