@@ -1,6 +1,9 @@
 package com.codeup.springbootblog.models;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
@@ -16,6 +19,11 @@ public class Post {
 
     @Column(columnDefinition = "TEXT")
     private String body;
+
+//    @CreationTimestamp
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @Column(name = "create_date")
+//    private Date createDate;
 
     //2.- In your User and Post classes, define the post - user relationship.
     // Log in to the mysql server and verify that the generated table structure matches what you are expecting.
@@ -68,5 +76,11 @@ public class Post {
         this.user = user;
     }
 
-
+//    public Date getCreateDate() {
+//        return createDate;
+//    }
+//
+//    public void setCreateDate(Date createDate) {
+//        this.createDate = createDate;
+//    }
 }

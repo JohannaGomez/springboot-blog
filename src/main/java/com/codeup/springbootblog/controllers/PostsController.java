@@ -37,7 +37,6 @@ public class PostsController {
 //        System.out.println(user.getEmail());
 
         viewModel.addAttribute("posts", postService.findAll());
-//        viewModel.addAttribute("users", usersDao.findAll()); // adding this line//
         return "/blog_template/index";
     }
 
@@ -47,7 +46,9 @@ public class PostsController {
     @GetMapping("/posts/{id}")
     public String showIndividualPost(@PathVariable int id, Model viewModel) {
         Post post =  postService.findOne(id);
+        System.out.println("this should be the user for this post: ==============" + post.getUser());
         User user = post.getUser();
+        System.out.println("this is a test:" + user);
         viewModel.addAttribute("user", user);
         viewModel.addAttribute("post", post);
         return "/blog_template/show";
@@ -93,9 +94,6 @@ public class PostsController {
         return "redirect:/";
     }
 
-
-    // feature:  ability a user has in my application (follow a friend, mass text, program an event)
-    //
 
 
 }

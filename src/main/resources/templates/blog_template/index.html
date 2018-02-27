@@ -30,9 +30,9 @@
               </h3>
               <p class="post-subtitle" th:text="${post.body}"></p>
 
-              <!--<p class="post-meta">Posted by:-->
-                <!--<span th:text="${post.user_id}"></span>-->
-              <!--</p>-->
+              <p class="post-meta">Posted on:
+                <!--<span th:text="${post.create_date}"></span>-->
+              </p>
 
               <div class="row edit_delete_row">
                 <div class="col-lg-4" sec:authorize="isAuthenticated()">
