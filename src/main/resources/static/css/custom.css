@@ -22,3 +22,19 @@
     height: 200px;
     border-radius: 50%;
 }
+
+#upload-button, #submit_edit, #edit_profile {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input {
+    width: 100%;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
