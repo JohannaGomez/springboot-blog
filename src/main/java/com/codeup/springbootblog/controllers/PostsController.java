@@ -77,6 +77,7 @@ public class PostsController {
     @GetMapping("posts/{id}/edit")
     public String showEditForm(@PathVariable long id, Model viewModel){
         Post post = postService.findOne(id);
+        postService.save(post);
         viewModel.addAttribute("post", post);
         return "/blog_template/edit";
     }

@@ -1,5 +1,6 @@
 package com.codeup.springbootblog.controllers;
 
+import com.codeup.springbootblog.daos.PostRepository;
 import com.codeup.springbootblog.daos.UsersRepository;
 import com.codeup.springbootblog.models.User;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,10 +20,13 @@ public class UsersController {
 
     private UsersRepository usersRepository;
 
+    private PostRepository postRepository;
+
     private PasswordEncoder encoder;
 
-    public UsersController(UsersRepository usersRepository, PasswordEncoder encoder) {
+    public UsersController(UsersRepository usersRepository, PostRepository postRepository, PasswordEncoder encoder) {
         this.usersRepository = usersRepository;
+        this.postRepository = postRepository;
         this.encoder = encoder;
     }
 
@@ -80,6 +84,14 @@ public class UsersController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         viewModel.addAttribute("user", user);
         return "/users/profile";
+    }
+
+    // Show all the posts by user:
+    @GetMapping("/user/posts")
+    public String postByUser(Model viewModel) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        viewModel.addAttribute("posts", postRepository.findByUser(user));
+        return "/users/posts_by_user";
     }
 
 
