@@ -2,7 +2,9 @@ package com.codeup.springbootblog.controllers;
 
 import com.codeup.springbootblog.daos.PostRepository;
 import com.codeup.springbootblog.daos.UsersRepository;
+import com.codeup.springbootblog.models.Post;
 import com.codeup.springbootblog.models.User;
+import com.codeup.springbootblog.services.PostService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -22,11 +24,14 @@ public class UsersController {
 
     private PostRepository postRepository;
 
+    private PostService postService;
+
     private PasswordEncoder encoder;
 
-    public UsersController(UsersRepository usersRepository, PostRepository postRepository, PasswordEncoder encoder) {
+    public UsersController(UsersRepository usersRepository, PostRepository postRepository, PostService postService, PasswordEncoder encoder) {
         this.usersRepository = usersRepository;
         this.postRepository = postRepository;
+        this.postService = postService;
         this.encoder = encoder;
     }
 
@@ -43,18 +48,12 @@ public class UsersController {
         User existingUsername = usersRepository.findByUsername(username);
         User existingEmail = usersRepository.findByEmail(user.getEmail());
 
-
-
         if (existingUsername != null) {
-
             validation.rejectValue("username", "user.username", "Duplicated username " + username);
-
         }
 
         if (existingEmail != null) {
-
             validation.rejectValue("email", "user.email", "Duplicated email " + user.getEmail());
-
         }
 
         if (validation.hasErrors()) {
@@ -62,8 +61,6 @@ public class UsersController {
             viewModel.addAttribute("user", user);
             return "users/sign-up";
         }
-
-
 
         // we need to hash passwords (using security configuration), after changing in the configuration class, create
         // the passwordEncoder in this controller.
@@ -76,22 +73,12 @@ public class UsersController {
     }
 
 
-
-
     // Show user profile:
     @GetMapping("/user/profile")
     public String showProfile(Model viewModel) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         viewModel.addAttribute("user", user);
         return "/users/profile";
-    }
-
-    // Show all the posts by user:
-    @GetMapping("/user/posts")
-    public String postByUser(Model viewModel) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        viewModel.addAttribute("posts", postRepository.findByUser(user));
-        return "/users/posts_by_user";
     }
 
 
@@ -109,5 +96,58 @@ public class UsersController {
         usersRepository.save(user);
         return "redirect:/login";
     }
+
+    // Show all the posts by user:
+    @GetMapping("/user/posts")
+    public String postByUser(Model viewModel) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        viewModel.addAttribute("posts", postRepository.findByUser(user));
+        return "/users/posts_by_user";
+    }
+
+    // "/new" is to create a new post and "/create" is the one that is going to show that it was created.
+
+    //  Create a new post (to catch the form):
+    @GetMapping("/user/posts/new")
+    public String showCreatePostForm(Model viewModel){
+        Post post = new Post();
+        viewModel.addAttribute("post", post);
+        return "/blog_template/new";
+    }
+
+    // Create a new post (populate the form):
+    @PostMapping("/user/posts/create")
+    // we are not using path variable here because is comming from a form
+    public String savePost(@ModelAttribute Post post){
+        // this is coming form the db, and UserWithRoles is not mapped.
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        post.setUser(usersRepository.findOne(user.getId()));
+        postRepository.save(post);
+        return "redirect:/";
+    }
+
+    // Edit a post (show the form):
+    @GetMapping("/user/posts/{id}/edit")
+    public String showEditPostForm(@PathVariable long id, Model viewModel){
+        Post post = postRepository.findOne(id);
+        postRepository.save(post);
+        viewModel.addAttribute("post", post);
+        return "/blog_template/edit";
+    }
+
+    // Edit a post (populate the form):
+    @PostMapping("/user/posts/edit")
+    public String updatePost(@ModelAttribute Post post){
+        postService.update(post);
+        return "redirect:/";
+    }
+
+    // Delete a post record:
+    @GetMapping("/user/posts/{id}/delete")
+    public String deletePost(@PathVariable long id, Model viewModel){
+        postService.delete(id);
+        return "redirect:/";
+    }
+
 
 }

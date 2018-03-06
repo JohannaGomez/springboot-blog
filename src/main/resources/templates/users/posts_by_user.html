@@ -36,12 +36,12 @@
 
                 <div class="row edit_delete_row">
                     <div class="col-lg-4" sec:authorize="isAuthenticated()">
-                        <a class="btn btn-warning btn-block edit_btn" th:href="${'/posts/'+post.id+'/edit'}">Edit</a>
+                        <a class="btn btn-warning btn-block edit_btn" th:href="${'/user/posts/'+post.id+'/edit'}">Edit</a>
                     </div>
                     <div class="col-lg-4">
                     </div>
                     <div class="col-lg-4" sec:authorize="isAuthenticated()">
-                        <a class="btn btn-danger btn-block delete_btn" th:href="${'/posts/'+post.id+'/delete'}">Delete</a>
+                        <a class="btn btn-danger btn-block delete_btn" th:href="${'/user/posts/'+post.id+'/delete'}">Delete</a>
                     </div>
                 </div>
                 <br/>
