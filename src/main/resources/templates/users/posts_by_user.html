@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="fragments/blog_template_head :: header('Blog posts index')"></head>
+<body>
+<nav th:replace="fragments/blog_template_navbar :: navbar-partial"></nav>
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('/img/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>My village</h1>
+                    <span class="subheading">A Blog by Moms </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-preview" th:each="post : ${posts}">
+                <h3 class="post-title">
+                    <a th:href="${'/posts/'+post.id}"><span th:text="${post.title}"></span></a>
+                </h3>
+                <p class="post-subtitle" th:text="${post.body}"></p>
+
+                <p class="post-meta">Posted on:
+                    <!--<span th:text="${post.create_date}"></span>-->
+                </p>
+
+                <div class="row edit_delete_row">
+                    <div class="col-lg-4" sec:authorize="isAuthenticated()">
+                        <a class="btn btn-warning btn-block edit_btn" th:href="${'/user/posts/'+post.id+'/edit'}">Edit</a>
+                    </div>
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-4" sec:authorize="isAuthenticated()">
+                        <a class="btn btn-danger btn-block delete_btn" th:href="${'/user/posts/'+post.id+'/delete'}">Delete</a>
+                    </div>
+                </div>
+                <br/>
+
+            </div>
+            <hr/>
+
+
+            <!-- Pager -->
+            <div class="clearfix">
+                <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<footer th:replace="fragments/blog_template_footer :: footer-partial"></footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="/js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
+
+
+
