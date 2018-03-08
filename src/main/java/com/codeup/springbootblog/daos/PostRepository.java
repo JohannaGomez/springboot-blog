@@ -13,5 +13,12 @@ import java.util.List;
 
 public interface PostRepository  extends CrudRepository<Post, Long>{
     //Abstract interface
+
     List<Post> findByUser(User user);
+
+
+
+    List<Post> findByBodyIsLikeOrTitleIsLike(String term, String term2);
+
+
 }

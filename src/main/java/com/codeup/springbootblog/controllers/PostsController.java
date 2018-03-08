@@ -22,6 +22,8 @@ public class PostsController {
 
     private final PostService postService;
 
+    private PostRepository postRepository;
+
 
     private UsersRepository usersDao;
 
@@ -53,6 +55,14 @@ public class PostsController {
         viewModel.addAttribute("post", post);
         return "/blog_template/show";
     }
+
+    @PostMapping("/posts/search")
+    public String search(@RequestParam(name = "term") String term, Model viewModel) {
+        term = "%" + term + "%";
+        viewModel.addAttribute("posts", postRepository.findByBodyIsLikeOrTitleIsLike(term, term));
+        return "posts/results_of_search";
+    }
+
 
 
 
