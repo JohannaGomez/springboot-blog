@@ -22,12 +22,15 @@ public class PostsController {
 
     private final PostService postService;
 
+    private PostRepository postRepository;
+
 
     private UsersRepository usersDao;
 
-    public PostsController(PostService postService, UsersRepository usersDao) {
+    public PostsController(PostService postService, PostRepository postRepository, UsersRepository usersDao) {
         this.postService = postService;
         this.usersDao = usersDao;
+        this.postRepository = postRepository;
     }
 
     @GetMapping("/")
@@ -46,13 +49,19 @@ public class PostsController {
     @GetMapping("/posts/{id}")
     public String showIndividualPost(@PathVariable int id, Model viewModel) {
         Post post =  postService.findOne(id);
-        System.out.println("this should be the user for this post: ==============" + post.getUser());
         User user = post.getUser();
-        System.out.println("this is a test:" + user);
         viewModel.addAttribute("user", user);
         viewModel.addAttribute("post", post);
         return "/blog_template/show";
     }
+
+    @PostMapping("/posts/search")
+    public String search(@RequestParam(name = "term") String term, Model viewModel) {
+        term = "%"+term+"%";
+        viewModel.addAttribute("posts", postRepository.findByBodyIsLikeOrTitleIsLike(term, term));
+        return "blog_template/results_of_search";
+    }
+
 
 
 
