@@ -17,6 +17,9 @@ public class Post {
     @Column(nullable = false)
     private String title;
 
+    @Column(nullable = false)
+    private String subtitle;
+
     @Column(columnDefinition = "TEXT")
     private String body;
 
@@ -40,6 +43,7 @@ public class Post {
 
     public Post(String title, String body, User user) {
         this.title = title;
+        this.subtitle = subtitle;
         this.body = body;
         this.user = user;
     }
@@ -74,6 +78,14 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
     }
 
 //    public Date getCreateDate() {
