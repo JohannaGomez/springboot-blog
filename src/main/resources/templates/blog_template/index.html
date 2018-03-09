@@ -28,6 +28,7 @@
               <h3 class="post-title">
                 <a th:href="${'/posts/'+post.id}"><span th:text="${post.title}"></span></a>
               </h3>
+              <h5 class="post-subtitle" th:text="${post.subtitle}"></h5>
               <p class="post-subtitle" th:text="${post.body}"></p>
 
               <p class="post-meta">Posted on:

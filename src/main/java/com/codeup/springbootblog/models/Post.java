@@ -17,13 +17,16 @@ public class Post {
     @Column(nullable = false)
     private String title;
 
+    @Column(nullable = false)
+    private String subtitle;
+
     @Column(columnDefinition = "TEXT")
     private String body;
 
-//    @CreationTimestamp
-//    @Temporal(TemporalType.TIMESTAMP)
-//    @Column(name = "create_date")
-//    private Date createDate;
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_date")
+    private Date createDate;
 
     //2.- In your User and Post classes, define the post - user relationship.
     // Log in to the mysql server and verify that the generated table structure matches what you are expecting.
@@ -40,8 +43,10 @@ public class Post {
 
     public Post(String title, String body, User user) {
         this.title = title;
+        this.subtitle = subtitle;
         this.body = body;
         this.user = user;
+        this.createDate = createDate;
     }
 
     public long getId() {
@@ -76,11 +81,19 @@ public class Post {
         this.user = user;
     }
 
-//    public Date getCreateDate() {
-//        return createDate;
-//    }
-//
-//    public void setCreateDate(Date createDate) {
-//        this.createDate = createDate;
-//    }
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
 }
