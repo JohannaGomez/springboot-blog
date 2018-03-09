@@ -13,8 +13,9 @@
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="post-heading">
                         <h1 th:text="${post.title}"></h1>
-                        <h2 class="subheading">Problems look mighty small from 150 miles up</h2>
-                        <span class="meta">Posted by: <a th:href="${user.email}"> <span th:text="${user.email}"></span></a><span> on August 24, 2017</span></span>
+                        <h2 class="subheading" th:text="${post.subtitle}"></h2>
+                        <span class="meta">Posted by: <a th:href="${user.email}"> <span th:text="${user.email}"></span></a><span th:text="${#dates.format(post.createDate,'MMM dd YYYY')}"></span>
+</span>
                     </div>
                 </div>
             </div>
