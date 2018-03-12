@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Controller
 public class UsersController {
@@ -130,6 +132,8 @@ public class UsersController {
     @GetMapping("/user/posts/{id}/edit")
     public String showEditPostForm(@PathVariable long id, Model viewModel){
         Post post = postRepository.findOne(id);
+        Date createdOn = post.getCreateDate();
+        System.out.println("this is the date when the post was created: " + createdOn);
         postRepository.save(post);
         viewModel.addAttribute("post", post);
         return "/blog_template/edit";
@@ -137,8 +141,12 @@ public class UsersController {
 
     // Edit a post (populate the form):
     @PostMapping("/user/posts/edit")
-    public String updatePost(@ModelAttribute Post post){
-        postService.update(post);
+    public String updatePost(@ModelAttribute Post postEdited){
+        Post post2bUpdated = postRepository.findOne(postEdited.getId());
+//        LocalDate today = new LocalDate().now();
+//        post2bUpdated.setModifyDate(today);
+        post2bUpdated.setModifyDate(post2bUpdated.getModifyDate());
+        postService.update(post2bUpdated);
         return "redirect:/";
     }
 
