@@ -24,17 +24,14 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="post-preview" th:each="post : ${posts}">
+            <div class="post-preview mb-4" th:each="post : ${posts}">
               <h3 class="post-title">
                 <a th:href="${'/posts/'+post.id}"><span th:text="${post.title}"></span></a>
               </h3>
               <h5 class="post-subtitle" th:text="${post.subtitle}"></h5>
               <p class="post-subtitle" th:text="${post.body}"></p>
-
-              <p class="post-meta">Posted on:
-                <!--<span th:text="${post.create_date}"></span>-->
-              </p>
-
+              <span class="post-meta">Posted on: <span th:text="${#dates.format(post.createDate,'MMM dd YYYY')}"></span></span>
+              <br/>
             </div>
           <hr/>
 

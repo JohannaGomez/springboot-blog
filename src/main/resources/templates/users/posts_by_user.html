@@ -28,11 +28,10 @@
                 <h3 class="post-title">
                     <a th:href="${'/posts/'+post.id}"><span th:text="${post.title}"></span></a>
                 </h3>
+                <p class="post-subtitle" th:text="${post.subtitle}"></p>
                 <p class="post-subtitle" th:text="${post.body}"></p>
-
-                <p class="post-meta">Posted on:
-                    <!--<span th:text="${post.create_date}"></span>-->
-                </p>
+                <span class="post-meta mb-5">Posted on: <span th:text="${#dates.format(post.createDate,'MMM dd YYYY')}"></span></span>
+                <br/>
 
                 <div class="row edit_delete_row">
                     <div class="col-lg-4" sec:authorize="isAuthenticated()">

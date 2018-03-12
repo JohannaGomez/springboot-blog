@@ -50,10 +50,20 @@
                                 <br/>
                                 <div class="row">
                                     <div class="col-lg-3">
+                                        <h6>New subTitle:</h6>
+                                    </div>
+                                    <div class="col-lg-offset-1 col-lg-8">
+                                        <input class="post-title" style="width: 100%;" th:field="*{subtitle}" />
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-lg-3">
                                         <h6>Description:</h6>
                                     </div>
                                     <div class="col-lg-offset-1 col-lg-8">
                                         <input class="post-title" style="width: 100%;" th:field="*{body}" />
+                                        <input type="hidden" th:field="*{createDate}"/>
                                     </div>
                                 </div>
                                 <br/>

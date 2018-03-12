@@ -7,12 +7,13 @@
 <!-- Navigation -->
     <nav th:fragment="navbar-partial" class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="/">My village</a>
+            <a class="navbar-brand" href="/">J/G</a>
             <form class="form-inline navbar-left" th:action="@{/posts/search}" th:method="post">
                 <div class="form-group">
                     <input type="text" id="term" class="form-control" name="term" placeholder="title or content" />
+                    <button id="search_btn" type="submit" class="btn btn-default form-control rounded">Search</button>
                 </div>
-                <button id="search_btn" type="submit" class="btn btn-default rounded">Search</button>
+
             </form>
 
 
@@ -23,21 +24,20 @@
 
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item user_welcome" sec:authorize="isAuthenticated()">
-                        <span>Welcome, <span th:text="${#authentication.principal.username}" /></span>
-
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" href="#"><span>Hi, <span th:text="${#authentication.principal.username}" /> !!</span></a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/user/posts/new"><span class="glyphicon glyphicon-tag"></span> Create A New Post</a>
+                        <a class="nav-link" href="/user/posts/new"><span class="glyphicon glyphicon-tag"></span>New Post</a>
                     </li>
 
                     <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a class="nav-link" href="user/profile"><span class="glyphicon glyphicon-user"></span> View Profile</a>
+                        <a class="nav-link" href="user/profile"><span class="glyphicon glyphicon-user"></span>View Profile</a>
                     </li>
 
                     <li class="nav-item" sec:authorize="!isAuthenticated()">
-                        <a class="nav-link" href="/user/sign-up">Register <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
+                        <a class="nav-link" href="/user/sign-up">Register<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
                     </li>
 
                     <li class="nav-item" sec:authorize="!isAuthenticated()">
