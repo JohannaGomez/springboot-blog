@@ -29,24 +29,24 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/user/posts/new"><i class="fas fa-calendar-alt"></i> New Post</a>
+                        <a class="nav-link" href="/user/posts/new"><i class="fas fa-plus-square"></i> New Post</a>
                     </li>
 
                     <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a class="nav-link" href="user/profile"><i class="fas fa-calendar-alt"></i> View Profile</a>
+                        <a class="nav-link" href="user/profile"><i class="fas fa-user"></i> View Profile</a>
                     </li>
 
                     <li class="nav-item" sec:authorize="!isAuthenticated()">
-                        <a class="nav-link" href="/user/sign-up"><i class="fas fa-calendar-alt"></i> Register</a>
+                        <a class="nav-link" href="/user/sign-up"><i class="fas fa-user-plus"></i> Register</a>
                     </li>
 
                     <li class="nav-item" sec:authorize="!isAuthenticated()">
-                        <a class="nav-link" href="/login"><i class="fas fa-calendar-alt"></i> Login</a>
+                        <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
                     </li>
 
                     <li class="nav-item" sec:authorize="isAuthenticated()">
                         <form th:action="@{/logout}" th:method="post">
-                            <button class="btn-link btn logout_btn" style="margin-top: 8px"><i class="fas fa-calendar-alt"></i> Logout</button>
+                            <button class="btn-link btn logout_btn" style="margin-top: 8px"><i class="fas fa-sign-out-alt"></i> Logout</button>
                         </form>
                     </li>
 
