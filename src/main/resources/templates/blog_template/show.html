@@ -14,8 +14,7 @@
                     <div class="post-heading">
                         <h1 th:text="${post.title}"></h1>
                         <h2 class="subheading" th:text="${post.subtitle}"></h2>
-                        <span class="meta">Posted by: <a th:href="${user.email}"> <span th:text="${user.email}"></span></a><span th:text="${#dates.format(post.createDate,'MMM dd YYYY')}"></span>
-</span>
+                        <span class="meta">Posted by: <a th:href="${user.email}"> <span th:text="${user.email}" ></span></a><span> ~ On  <span th:text="${#dates.format(post.createDate,'MMM dd YYYY')}"></span></span></span>
                     </div>
                 </div>
             </div>
@@ -28,13 +27,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
-                    <!--<div class="post-preview">-->
-                        <!--<h3 class="post-title" th:text="${post.title}"></h3>-->
-                        <p class="post-subtitle" th:text="${post.body}"></p>
-                        <p><a href="#">Lemon and Lavender Lounge ~ January Essential Oils Basic Course</a>
-                            on September 24, 2017</p>
-                    <!--</div>-->
-
+                    <p class="post-subtitle" th:text="${post.body}"></p>
+                    <span class="meta">Posted by: <a th:href="${user.email}"> <span th:text="${user.email}" ></span></a><span>  On  <span th:text="${#dates.format(post.createDate,'MMM dd YYYY')}"></span></span></span>
                 </div>
             </div>
         </div>
