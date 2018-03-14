@@ -99,13 +99,16 @@ public class UsersController {
         return "redirect:/login";
     }
 
+
+    //=================================== Post operations:  ========================================================
+
     // Show all the posts by user:
-    @GetMapping("/user/posts")
-    public String postByUser(Model viewModel) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        viewModel.addAttribute("posts", postRepository.findByUser(user));
-        return "/users/posts_by_user";
-    }
+//    @GetMapping("/user/posts")
+//    public String postByUser(Model viewModel) {
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        viewModel.addAttribute("posts", postRepository.findByUser(user));
+//        return "/users/posts_by_user";
+//    }
 
     // "/new" is to create a new post and "/create" is the one that is going to show that it was created.
 

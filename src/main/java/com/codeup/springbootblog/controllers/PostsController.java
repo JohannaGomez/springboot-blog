@@ -62,6 +62,16 @@ public class PostsController {
         return "blog_template/results_of_search";
     }
 
+    // Show all the posts by user:
+    @GetMapping("/postsByUser")
+    public String postByUser(Model viewModel) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        viewModel.addAttribute("posts", postRepository.findByUser(user));
+        return "/users/posts_by_user";
+    }
+
+
+
 
 
 }
