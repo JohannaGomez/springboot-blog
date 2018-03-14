@@ -29,14 +29,10 @@ public class Post {
     @Column(name = "create_date")
     private Date createDate;
 
-    @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "modify_date")
-    private Date modifyDate;
-
-    //2.- In your User and Post classes, define the post - user relationship.
-    // Log in to the mysql server and verify that the generated table structure matches what you are expecting.
-    // Manually insert a user record in the database.
+//    @UpdateTimestamp
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @Column(name = "modify_date")
+//    private Date modifyDate;
 
     @ManyToOne
     @JoinColumn(name="user_id")  //This line is not necessary bc User hast the mapping to user in the one to many
@@ -47,13 +43,11 @@ public class Post {
     public Post() {
     }
 
-    public Post(String title, String body, User user) {
+    public Post(String title, String subtitle, String body, User user) {
         this.title = title;
         this.subtitle = subtitle;
         this.body = body;
         this.user = user;
-//        this.createDate = createDate;
-//        this.modifyDate = modifyDate;
     }
 
     public long getId() {
@@ -100,15 +94,15 @@ public class Post {
         return createDate;
     }
 
-    public void setCreateDate() {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
-    public Date getModifyDate() {
-        return modifyDate;
-    }
-
-    public void setModifyDate(Date modifyDate) {
-        this.modifyDate = modifyDate;
-    }
+//    public Date getModifyDate() {
+//        return modifyDate;
+//    }
+//
+//    public void setModifyDate(Date modifyDate) {
+//        this.modifyDate = modifyDate;
+//    }
 }

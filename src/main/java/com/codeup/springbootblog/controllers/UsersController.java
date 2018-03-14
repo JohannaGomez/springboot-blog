@@ -99,13 +99,16 @@ public class UsersController {
         return "redirect:/login";
     }
 
+
+    //=================================== Post operations:  ========================================================
+
     // Show all the posts by user:
-    @GetMapping("/user/posts")
-    public String postByUser(Model viewModel) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        viewModel.addAttribute("posts", postRepository.findByUser(user));
-        return "/users/posts_by_user";
-    }
+//    @GetMapping("/user/posts")
+//    public String postByUser(Model viewModel) {
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        viewModel.addAttribute("posts", postRepository.findByUser(user));
+//        return "/users/posts_by_user";
+//    }
 
     // "/new" is to create a new post and "/create" is the one that is going to show that it was created.
 
@@ -133,7 +136,7 @@ public class UsersController {
     public String showEditPostForm(@PathVariable long id, Model viewModel){
         Post post = postRepository.findOne(id);
         Date createdOn = post.getCreateDate();
-        System.out.println("this is the date when the post was created: " + createdOn);
+        System.out.println(" +++++++++++++++  this is the date when the post was created: " + createdOn);
         postRepository.save(post);
         viewModel.addAttribute("post", post);
         return "/blog_template/edit";
@@ -141,14 +144,15 @@ public class UsersController {
 
     // Edit a post (populate the form):
     @PostMapping("/user/posts/edit")
-    public String updatePost(@ModelAttribute Post postEdited){
-        Post post2bUpdated = postRepository.findOne(postEdited.getId());
-//        LocalDate today = new LocalDate().now();
-//        post2bUpdated.setModifyDate(today);
-        post2bUpdated.setModifyDate(post2bUpdated.getModifyDate());
+    public String updatePost(@ModelAttribute Post post){
+        Post post2bUpdated = postRepository.findOne(post.getId());
+        post2bUpdated.setTitle(post.getTitle());
+        post2bUpdated.setSubtitle(post.getSubtitle());
+        post2bUpdated.setCreateDate(post2bUpdated.getCreateDate());
         postService.update(post2bUpdated);
         return "redirect:/";
     }
+
 
     // Delete a post record:
     @GetMapping("/user/posts/{id}/delete")
